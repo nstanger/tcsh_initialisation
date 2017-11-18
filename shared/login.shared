@@ -1,0 +1,7 @@
+# Macports initialisation.
+# The same argument applies for Macports.
+# setenv PATH "/opt/local/bin:/opt/local/sbin:${PATH}"
+# setenv MANPATH "/opt/local/share/man:${MANPATH}"
+
+# Temporary hack to ensure MacPorts is first in the various paths.
+# set path = (/opt/local/bin /opt/local/sbin $path)

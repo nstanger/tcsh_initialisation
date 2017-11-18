@@ -1,0 +1,3 @@
+source /Users/Shared/init/tcsh/path.shared
+
+set path = ($path ~/Anaconda/bin)

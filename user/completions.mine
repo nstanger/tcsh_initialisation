@@ -1,0 +1,3 @@
+source /Users/Shared/init/tcsh/completions.shared
+
+complete openman 'n/-M/d/' 'p/*/c/'

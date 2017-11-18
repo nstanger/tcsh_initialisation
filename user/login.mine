@@ -1,0 +1,10 @@
+source /Users/Shared/init/tcsh/login.shared
+
+# Set up an alias for running EPrints scripts. This would normally
+# go in one of the aliases files, but it requires the PERL5LIB
+# environment variable, which is set up by the Fink initialisation.
+# Fink initialisation occurs *after* the various alias files have
+# been read (see login.shared for the explanation why). We therefore
+# have to create the alias here.
+#
+# alias run_eprints "sudo -u _www env PERL5LIB=$PERL5LIB"
