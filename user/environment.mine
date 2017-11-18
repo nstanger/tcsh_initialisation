@@ -1,4 +1,4 @@
 source /Users/Shared/init/tcsh/environment.shared
 
 setenv CLASSPATH "${CLASSPATH}:/Users/nstanger/Research/PhD/Swift/classes"
-setenv TEXDOCVIEW_pdf "/Users/nstanger/bin/acrobat %s"setenv TEXEDIT "/usr/bin/bbedit -w +%d %s"
+setenv TEXDOCVIEW_pdf "/Users/nstanger/bin/acrobat %s"
