@@ -1,6 +1,6 @@
 SHELL=/bin/sh
 
-.PHONY: install init user shared gui
+.PHONY: install init user shared gui bin
 
 INSTALL=/usr/bin/install
 LAUNCHCTL=/bin/launchctl
