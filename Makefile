@@ -5,10 +5,13 @@ SHELL=/bin/sh
 INSTALL=/usr/bin/install
 LAUNCHCTL=/bin/launchctl
 
+EFFECTIVE_USER=$(who am i | awk '{print $1}')
+EFFECTIVE_GROUP=$(EFFECTIVE_GROUP ${EFFECTIVE_USER} | awk '{print $1}')
+
 INITDIR=/usr/local/share/tcsh/examples
-USERDIR=$(HOME)/Library/init/tcsh
+USERDIR=/Users/$(EFFECTIVE_USER)/Library/init/tcsh
 SHAREDDIR=/Users/Shared/init/tcsh
-BINDIR=$(HOME)/bin
+BINDIR=/Users/$(EFFECTIVE_USER)/bin
 
 INITFILES=$(wildcard init/*)
 USERFILES=$(wildcard user/*)
@@ -22,15 +25,15 @@ init:
 	$(INSTALL) -c -b -m 0644 $(INITFILES) $(INITDIR)
 
 user:
-	$(INSTALL) -d -o $(USER) -g $(GROUPS) $(USERDIR)
-	$(INSTALL) -c -b -m 0644 -o $(USER) -g $(GROUPS) $(USERFILES) $(USERDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERDIR)
+	$(INSTALL) -c -b -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERFILES) $(USERDIR)
 
 shared:
-	$(INSTALL) -d -o $(USER) -g $(GROUPS) $(SHAREDDIR)
-	$(INSTALL) -c -b -m 0644 -o $(USER) -g $(GROUPS) $(SHAREDFILES) $(SHAREDDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDDIR)
+	$(INSTALL) -c -b -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDFILES) $(SHAREDDIR)
 
 bin:
-	$(INSTALL) -d -o $(USER) -g $(GROUPS) $(BINDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINDIR)
 	$(INSTALL) -c -b -m 0755 $(BINFILES) $(BINDIR)
 
 gui:
@@ -39,5 +42,5 @@ gui:
 	$(INSTALL) -c -b -m 0555 gui/environment /etc
 	$(INSTALL) -c -m 0644 gui/environment.plist /Library/LaunchDaemons
 	$(INSTALL) -c -m 0644 gui/environment.user.plist /Library/LaunchAgents
-	sudo -u $(USER) $(LAUNCHCTL) load -w /Library/LaunchAgents/environment.user.plist
+	sudo -u $(EFFECTIVE_USER) $(LAUNCHCTL) load -w /Library/LaunchAgents/environment.user.plist
 	$(LAUNCHCTL) load -w /Library/LaunchDaemons/environment.plist
