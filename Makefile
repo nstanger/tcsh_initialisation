@@ -22,15 +22,15 @@ init:
 	$(INSTALL) -c -b -m 0644 $(INITFILES) $(INITDIR)
 
 user:
-	$(INSTALL) -d -o $(USER) -g $(GROUP) $(USERDIR)
-	$(INSTALL) -c -b -m 0644 -o $(USER) -g $(GROUP) $(USERFILES) $(USERDIR)
+	$(INSTALL) -d -o $(USER) -g $(GROUPS) $(USERDIR)
+	$(INSTALL) -c -b -m 0644 -o $(USER) -g $(GROUPS) $(USERFILES) $(USERDIR)
 
 shared:
-	$(INSTALL) -d -o $(USER) -g $(GROUP) $(SHAREDDIR)
-	$(INSTALL) -c -b -m 0644 -o $(USER) -g $(GROUP) $(SHAREDFILES) $(SHAREDDIR)
+	$(INSTALL) -d -o $(USER) -g $(GROUPS) $(SHAREDDIR)
+	$(INSTALL) -c -b -m 0644 -o $(USER) -g $(GROUPS) $(SHAREDFILES) $(SHAREDDIR)
 
 bin:
-	$(INSTALL) -d -o $(USER) -g $(GROUP) $(BINDIR)
+	$(INSTALL) -d -o $(USER) -g $(GROUPS) $(BINDIR)
 	$(INSTALL) -c -b -m 0755 $(BINFILES) $(BINDIR)
 
 gui:
