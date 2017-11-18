@@ -5,8 +5,8 @@ SHELL=/bin/sh
 INSTALL=/usr/bin/install
 LAUNCHCTL=/bin/launchctl
 
-EFFECTIVE_USER=$(who am i | awk '{print $1}')
-EFFECTIVE_GROUP=$(groups ${EFFECTIVE_USER} | awk '{print $1}')
+EFFECTIVE_USER=$(shell logname)
+EFFECTIVE_GROUP=$(shell id -gn $(EFFECTIVE_USER))
 
 INITDIR=/usr/local/share/tcsh/examples
 USERDIR=/Users/$(EFFECTIVE_USER)/Library/init/tcsh
@@ -34,7 +34,7 @@ shared:
 
 bin:
 	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINDIR)
-	$(INSTALL) -c -b -m 0755 $(BINFILES) $(BINDIR)
+	$(INSTALL) -c -b -m 0755 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINFILES) $(BINDIR)
 
 gui:
 	-$(LAUNCHCTL) unload -w /Library/LaunchAgents/environment.user.plist
@@ -44,3 +44,15 @@ gui:
 	$(INSTALL) -c -m 0644 gui/environment.user.plist /Library/LaunchAgents
 	sudo -u $(EFFECTIVE_USER) $(LAUNCHCTL) load -w /Library/LaunchAgents/environment.user.plist
 	$(LAUNCHCTL) load -w /Library/LaunchDaemons/environment.plist
+
+debug:
+	@echo "EFFECTIVE_USER = ${EFFECTIVE_USER}"
+	@echo "EFFECTIVE_GROUP = ${EFFECTIVE_GROUP}"
+	@echo "INITDIR = ${INITDIR}"
+	@echo "USERDIR = ${USERDIR}"
+	@echo "SHAREDDIR = ${SHAREDDIR}"
+	@echo "BINDIR = ${BINDIR}"
+	@echo "INITFILES = ${INITFILES}"
+	@echo "USERFILES = ${USERFILES}"
+	@echo "SHAREDFILES = ${SHAREDFILES}"
+	@echo "BINFILES = ${BINFILES}"
