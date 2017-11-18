@@ -6,7 +6,7 @@ INSTALL=/usr/bin/install
 LAUNCHCTL=/bin/launchctl
 
 EFFECTIVE_USER=$(who am i | awk '{print $1}')
-EFFECTIVE_GROUP=$(EFFECTIVE_GROUP ${EFFECTIVE_USER} | awk '{print $1}')
+EFFECTIVE_GROUP=$(groups ${EFFECTIVE_USER} | awk '{print $1}')
 
 INITDIR=/usr/local/share/tcsh/examples
 USERDIR=/Users/$(EFFECTIVE_USER)/Library/init/tcsh
