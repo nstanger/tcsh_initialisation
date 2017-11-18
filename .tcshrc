@@ -1,0 +1,8 @@
+# See http://stackoverflow.com/a/26477515 for details on how to set up global environment variables for CLI and GUI.
+source /usr/local/share/tcsh/examples/rc
+
+if ("$?TERM_PROGRAM") then
+	if ( ( $TERM_PROGRAM == "Apple_Terminal" ) && ( ! ${?INSIDE_EMACS} ) ) then
+        ~/bin/url_encode_cwd
+    endif
+endif
