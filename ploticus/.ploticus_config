@@ -1,0 +1,5 @@
+units:  cm
+numbernotation: us
+numberspacerthreshold: 3
+font:   /Helvetica
+dateformat:     yyyy-mm-dd
