@@ -8,3 +8,8 @@ Installs the following:
 * GUI environment variable configuration in /etc
 
 Any existing files are backed up before being overwritten.
+
+
+# Other configurations
+
+Mainly `.` files that should be copied to `~`.
