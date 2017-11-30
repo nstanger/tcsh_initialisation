@@ -1,1 +1,0 @@
-Copy all of these to your home directory.
