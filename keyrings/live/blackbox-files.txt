@@ -4,3 +4,4 @@ net/.forward
 net/.netrc
 shared/environment.shared
 sitecopy/.sitecopyrc
+wget/.wgetrc
