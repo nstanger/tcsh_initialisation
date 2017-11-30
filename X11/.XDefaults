@@ -1,0 +1,9 @@
+*background:			#DBDBDB
+*foreground:			black
+*activeForeground:		white
+*activeBackground:		#6699CC
+*selectForeground:		white
+*selectBackground:		#6699CC
+*highlightColor:		#FF88FF
+*highlightBackground:	#FF88FF
+*highlightForeground:	black

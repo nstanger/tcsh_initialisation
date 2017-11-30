@@ -1,0 +1,14 @@
+Xft.dpi:        216
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.autohint:   true
+Xft.rgba:       rgb
+Xft.hintstyle:  hintfull
+
+XTerm*faceName: mono:size=4
+XTerm*font: 7x13
+XTerm*locale: true
+XTerm*VT100.geometry: 250x50
+
+*faceName: mono:size=4
+*font: 7x13
