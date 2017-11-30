@@ -1,3 +1,4 @@
 git/.gitconfig
 gui/environment
 net/.forward
+net/.netrc
