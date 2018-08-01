@@ -114,7 +114,7 @@ dmd_open.local
 *.swp
 
 ####################
-# Python
+# PYTHON
 ####################
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -206,3 +206,22 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+####################
+# GRADLE
+####################
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
