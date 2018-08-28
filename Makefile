@@ -19,7 +19,7 @@ INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
 BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*))
-DOTFILES=.login $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
+DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
 
 install: init user shared gui bin dotfiles
 
