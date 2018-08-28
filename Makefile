@@ -20,6 +20,7 @@ USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
 BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*))
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
+VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
 
 install: init user shared gui bin dotfiles
 
@@ -50,6 +51,7 @@ gui: gui/environment
 
 dotfiles: $(DOTFILES)
 	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(DOTFILES) $(USERHOME)
+	$(INSTALL) -cbSd -m 0644  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(VIRTUALENVS) $(USERHOME)/.virtualenvs
 
 %: %.gpg
 	/opt/local/bin/blackbox_decrypt_all_files
@@ -69,3 +71,4 @@ debug:
 	@echo "SHAREDFILES = ${SHAREDFILES}"
 	@echo "BINFILES = ${BINFILES}"
 	@echo "DOTFILES = ${DOTFILES}"
+	@echo "VIRTUALENVS = ${VIRTUALENVS}"
