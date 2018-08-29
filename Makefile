@@ -51,7 +51,8 @@ gui: gui/environment
 
 dotfiles: $(DOTFILES)
 	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(DOTFILES) $(USERHOME)
-	$(INSTALL) -cbSd -m 0644  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(VIRTUALENVS) $(USERHOME)/.virtualenvs
+	$(INSTALL) -d -m 0755  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERHOME)/.virtualenvs
+	$(INSTALL) -cbS -m 0644  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(VIRTUALENVS) $(USERHOME)/.virtualenvs
 
 %: %.gpg
 	/opt/local/bin/blackbox_decrypt_all_files
