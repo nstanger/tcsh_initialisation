@@ -22,3 +22,5 @@ set complete = enhance
 bindkey "\e[3~" delete-char
 
 unset red green yellow blue magenta cyan yellow white end
+
+set autorehash
