@@ -24,3 +24,5 @@ bindkey "\e[3~" delete-char
 unset red green yellow blue magenta cyan yellow white end
 
 set autorehash
+
+bindkey -b ^U backward-kill-line
