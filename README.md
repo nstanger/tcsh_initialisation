@@ -9,6 +9,26 @@ Installs the following:
 
 Any existing files are backed up before being overwritten.
 
+The effective initialisation order is:
+
+```sh
+/etc/csh.cshrc
+/etc/csh.login
+.tcshrc
+    environment.mine
+    environment.shared
+    rc.shared
+    rc.mine
+    aliases.mine
+    aliases.shared
+    completions.mine
+    completions.shared
+.login
+    path.mine
+    path.shared
+    login.mine
+    login.shared
+```
 
 # Other configurations
 
