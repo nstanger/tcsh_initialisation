@@ -1,2 +1,25 @@
+ulimit -S -n 2048
+
+if ($?DISPLAY) then
+#     #/opt/local/bin/xrdb < ~/.Xdefaults
+#     /opt/local/bin/xrdb < ~/.Xresources
+else
+    # Hack to ensure that SSH logins still have environment variables that are
+    # specified using launchctl setenv in /etc/environment. Process is to extract
+    # the relevant lines into a temporary file then source that.
+    set temp_env = `mktemp /tmp/ssh_env.XXXXXX`
+    grep "^/bin/launchctl setenv" /etc/environment | cut -d ' ' -f 2- > $temp_env
+    source $temp_env
+    rm -f $temp_env
+    # Also set base paths correctly, as per /etc/environment.
+    if (-e /usr/libexec/path_helper) then
+        setenv PATH ""
+        setenv MANPATH "" # currently doesn't exist!
+        eval `/usr/libexec/path_helper -c`
+        setenv PATH $PATH
+        setenv MANPATH $MANPATH
+    endif
+endif
+
 # See http://stackoverflow.com/a/26477515 for details on how to set up global environment variables for CLI and GUI.
 source /usr/local/share/tcsh/examples/rc
