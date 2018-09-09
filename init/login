@@ -18,7 +18,7 @@
 # 		/usr/local/bin /usr/bin /bin			\
 # 		/usr/local/sbin /usr/sbin /sbin			\
 # 	   )
-setenv PATH `/bin/launchctl getenv PATH`
+# setenv PATH `/bin/launchctl getenv PATH`
 
 
 # if ($?version) then
@@ -28,7 +28,7 @@ setenv PATH `/bin/launchctl getenv PATH`
 # endif
 
 # setenv MANPATH "${HOME}/man:/usr/local/share/man:/usr/share/man"
-setenv MANPATH `/bin/launchctl getenv MANPATH`
+# setenv MANPATH `/bin/launchctl getenv MANPATH`
 
 if (-r "${tcsh_initdir}/path") source "${tcsh_initdir}/path"
 
