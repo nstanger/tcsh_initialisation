@@ -1,3 +1,2 @@
-# set path = ($path /Applications/OpenOffice.org1.1.2/program)
 setenv PATH "${PATH}:${HOME}/bin:${HOME}/anaconda2/bin"
 source /Users/Shared/init/tcsh/path.shared

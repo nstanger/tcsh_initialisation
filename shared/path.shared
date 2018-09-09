@@ -1,2 +1,2 @@
-setenv PATH "/opt/local/bin:/opt/local/sbin:${PATH}:${HOME}/bin:/Users/Shared/bin"
-# set path = ($path /Users/Shared/bin)
+setenv PATH "/opt/local/bin:/opt/local/sbin:${PATH}:/Users/Shared/bin"
+setenv MANPATH "/opt/local/share/man:${MANPATH}:/usr/local/man"
