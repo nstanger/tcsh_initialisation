@@ -2,9 +2,10 @@ SHELL=/bin/sh
 
 .PHONY: install init user shared gui bin dotfiles
 
+FIND=/usr/bin/find
 INSTALL=/usr/bin/install
 LAUNCHCTL=/bin/launchctl
-FIND=/usr/bin/find
+SUDO=/usr/bin/sudo
 
 EFFECTIVE_USER=$(shell /usr/bin/logname)
 EFFECTIVE_GROUP=$(shell /usr/bin/id -gn $(EFFECTIVE_USER))
@@ -18,7 +19,7 @@ BINDIR=/Users/$(EFFECTIVE_USER)/bin
 INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
-BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*))
+BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*)) 
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
 VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
 
@@ -46,7 +47,7 @@ gui: gui/environment
 	$(INSTALL) -cbS -m 0555 gui/environment /etc
 	$(INSTALL) -c -m 0644 gui/environment.plist /Library/LaunchDaemons
 	$(INSTALL) -c -m 0644 gui/environment.user.plist /Library/LaunchAgents
-	sudo -u $(EFFECTIVE_USER) $(LAUNCHCTL) load -w /Library/LaunchAgents/environment.user.plist
+	$(SUDO) -u $(EFFECTIVE_USER) $(LAUNCHCTL) load -w /Library/LaunchAgents/environment.user.plist
 	$(LAUNCHCTL) load -w /Library/LaunchDaemons/environment.plist
 
 dotfiles: $(DOTFILES)
