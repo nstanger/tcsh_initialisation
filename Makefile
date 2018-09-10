@@ -19,7 +19,7 @@ BINDIR=/Users/$(EFFECTIVE_USER)/bin
 INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
-BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*)) 
+BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*)) gui/gui_environment
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
 VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
 

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Occasionally something tickles the GUI environment daemon/agent in such a
+# a way that it continually re-launches the Dock. This script provides a
+# convenient way to start and stop the daemon/agent.
+
+EFFECTIVE_USER=$(/usr/bin/logname)
+
+state=$1
+
+if [[ $USER != "root" ]]
+then
+    echo "error: must be run as root"
+    exit 0
+fi
+
+if [[ $state == "start" ]]
+then
+    /usr/bin/sudo -u $EFFECTIVE_USER /bin/launchctl load -w /Library/LaunchAgents/environment.user.plist
+    /bin/launchctl load -w /Library/LaunchDaemons/environment.plist
+elif [[ $state == "stop" ]]
+then
+    /usr/bin/sudo -u $EFFECTIVE_USER /bin/launchctl unload -w /Library/LaunchAgents/environment.user.plist
+    /bin/launchctl unload -w /Library/LaunchDaemons/environment.plist
+else
+    echo "usage: gui_environment start"
+    echo "       gui_environment stop"
+fi
