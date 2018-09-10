@@ -36,6 +36,7 @@ user:
 shared: shared/environment.shared
 	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDDIR)
 	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDFILES) $(SHAREDDIR)
+	@echo "Don't forget to uncomment the HANDBOOK_INSTALL_ROOT and PRINTER variables."
 
 bin:
 	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINDIR)
