@@ -13,4 +13,4 @@ auto_shares: auto_shares.gpg
 	@chmod 600 auto_shares
 
 clean:
-	@blackbox_shred_all_files
+	@git clean -fX
