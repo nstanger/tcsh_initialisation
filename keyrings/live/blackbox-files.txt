@@ -1,3 +1,4 @@
+automount/auto_shares
 git/.gitconfig
 gui/environment
 net/.forward
