@@ -8,3 +8,4 @@ net/.netrc
 shared/environment.shared
 sitecopy/.sitecopyrc
 wget/.wgetrc
+automount/auto_shares
