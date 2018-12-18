@@ -10,6 +10,7 @@ install: auto_shares
 
 auto_shares: auto_shares.gpg
 	@/opt/local/bin/blackbox_decrypt_all_files
+	@chown nstanger auto_shares
 	@chmod 600 auto_shares
 
 clean:
