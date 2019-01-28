@@ -20,7 +20,8 @@ INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
 BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*)) gui/gui_environment
-DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
+DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
+	$(shell $(FIND) logrotate -type f)
 VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
 
 install: init user shared gui bin dotfiles
