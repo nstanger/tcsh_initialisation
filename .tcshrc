@@ -2,7 +2,7 @@ ulimit -S -n 2048
 
 if ($?DISPLAY) then
 #     #/opt/local/bin/xrdb < ~/.Xdefaults
-#     /opt/local/bin/xrdb < ~/.Xresources
+    /opt/local/bin/xrdb -merge $HOME/.Xresources
 else
     # Hack to ensure that SSH logins still have environment variables that are
     # specified using launchctl setenv in /etc/environment. Process is to extract
