@@ -23,7 +23,7 @@ alias rstudio "open /Applications/RStudio.app"
 # Java
 alias rstudio "sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
 alias java_home "/usr/libexec/java_home"
-alias plantuml "/usr/bin/java -jar /opt/local/share/java/plantuml.jar"
+alias plantuml "/usr/bin/java -Djava.awt.headless=true -jar /opt/local/share/java/plantuml.jar"
 
 # Miscellaneous
 eval `/opt/local/bin/thefuck --alias`
