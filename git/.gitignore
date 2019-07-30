@@ -25,6 +25,7 @@
 *.run.xml
 *.xdv
 *.listing
+*.synctex
 
 ####################
 # MAC CRUD
