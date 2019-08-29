@@ -22,6 +22,7 @@ SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
 BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*)) gui/gui_environment
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
+PATHFILES=$(wildcard gui/paths.d/*)
 VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
 
 install: init user shared gui bin dotfiles
@@ -43,10 +44,12 @@ bin:
 	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINDIR)
 	$(INSTALL) -cbS -m 0755 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINFILES) $(BINDIR)
 
-gui: gui/environment
+# What here needs sudo and what doesn't?
+gui: gui/environment $(PATHFILES)
+	$(SUDO) $(INSTALL) -c -m 0644 $(PATHFILES) /etc/paths.d
 	-$(LAUNCHCTL) unload -w /Library/LaunchAgents/environment.user.plist
 	-$(LAUNCHCTL) unload -w /Library/LaunchDaemons/environment.plist
-	$(INSTALL) -cbS -m 0555 gui/environment /etc
+	$(SUDO) $(INSTALL) -cbS -m 0555 gui/environment /etc
 	$(INSTALL) -c -m 0644 gui/environment.plist /Library/LaunchDaemons
 	$(INSTALL) -c -m 0644 gui/environment.user.plist /Library/LaunchAgents
 	$(SUDO) -u $(EFFECTIVE_USER) $(LAUNCHCTL) load -w /Library/LaunchAgents/environment.user.plist
