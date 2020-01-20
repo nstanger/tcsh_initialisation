@@ -11,15 +11,18 @@ EFFECTIVE_USER=$(shell /usr/bin/logname)
 EFFECTIVE_GROUP=$(shell /usr/bin/id -gn $(EFFECTIVE_USER))
 
 INITDIR=/usr/local/share/tcsh/examples
-USERDIR=/Users/$(EFFECTIVE_USER)/Library/init/tcsh
 USERHOME=/Users/$(EFFECTIVE_USER)
-SHAREDDIR=/Users/Shared/init/tcsh
-BINDIR=/Users/$(EFFECTIVE_USER)/bin
+USERINITDIR=$(USERHOME)/Library/init/tcsh
+USERBINDIR=/Users/$(EFFECTIVE_USER)/bin
+SHAREDHOME=/Users/Shared
+SHAREDINITDIR=$(SHAREDHOME)/init/tcsh
+SHAREDBINDIR=$(SHAREDHOME)/bin
 
 INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
-BINFILES=$(patsubst %.gpg,%,$(wildcard bin/*)) gui/gui_environment
+USERBINFILES=bin/url_encode_cwd gui/gui_environment
+SHAREDBINFILES=bin/bb bin/preview bin/restart-postgresql-server bin/vscd
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
 PATHFILES=$(wildcard gui/paths.d/*)
@@ -32,17 +35,19 @@ init:
 	$(INSTALL) -cbS -m 0644 $(INITFILES) $(INITDIR)
 
 user:
-	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERDIR)
-	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERFILES) $(USERDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERINITDIR)
+	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERFILES) $(USERINITDIR)
 
 shared: shared/environment.shared
-	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDDIR)
-	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDFILES) $(SHAREDDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDINITDIR)
+	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDFILES) $(SHAREDINITDIR)
 	@echo "Don't forget to uncomment the HANDBOOK_INSTALL_ROOT and PRINTER variables."
 
 bin:
-	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINDIR)
-	$(INSTALL) -cbS -m 0755 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(BINFILES) $(BINDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERBINDIR)
+	$(INSTALL) -d -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERBINDIR)
+	$(INSTALL) -cbS -m 0755 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERBINFILES) $(USERBINDIR)
+	$(INSTALL) -cbS -m 0755 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(SHAREDBINFILES) $(SHAREDBINDIR)
 
 # What here needs sudo and what doesn't?
 gui: gui/environment $(PATHFILES)
@@ -70,12 +75,12 @@ debug:
 	@echo "EFFECTIVE_USER = ${EFFECTIVE_USER}"
 	@echo "EFFECTIVE_GROUP = ${EFFECTIVE_GROUP}"
 	@echo "INITDIR = ${INITDIR}"
-	@echo "USERDIR = ${USERDIR}"
-	@echo "SHAREDDIR = ${SHAREDDIR}"
-	@echo "BINDIR = ${BINDIR}"
+	@echo "USERINITDIR = ${USERINITDIR}"
+	@echo "SHAREDHOME = ${SHAREDHOME}"
+	@echo "USERBINDIR = ${USERBINDIR}"
 	@echo "INITFILES = ${INITFILES}"
 	@echo "USERFILES = ${USERFILES}"
 	@echo "SHAREDFILES = ${SHAREDFILES}"
-	@echo "BINFILES = ${BINFILES}"
+	@echo "USERBINFILES = ${USERBINFILES}"
 	@echo "DOTFILES = ${DOTFILES}"
 	@echo "VIRTUALENVS = ${VIRTUALENVS}"

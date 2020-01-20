@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+    delay=180
+else
+    delay=$1
+fi
+
+server=$(/opt/local/bin/port installed "postgresql*" | grep server | grep active | cut -d@ -f1 | tr -d ' ')
+
+/usr/bin/logger Will restart $server in $delay seconds...
+/bin/sleep $delay
+
+/usr/bin/logger Restarting $server...
+/opt/local/bin/port unload $server
+/opt/local/bin/port load $server
+
+/bin/sleep 10
+process=$(ps ax | grep "$server" | grep daemondo)
+if [ -z "$process" ]
+then
+    /usr/bin/logger Failed to restart $server!
+else
+    /usr/bin/logger Restarted $server successfully.
+fi
