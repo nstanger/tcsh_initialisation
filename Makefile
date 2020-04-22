@@ -27,8 +27,9 @@ DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f))
 	$(shell $(FIND) logrotate -type f)
 PATHFILES=$(wildcard gui/paths.d/*)
 VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
+SUDOERS=$(wildcard sudoers.d/*)
 
-install: init user shared gui bin dotfiles
+install: init user shared gui bin dotfiles sudoers
 
 init: 
 	$(INSTALL) -d $(INITDIR)
@@ -64,6 +65,9 @@ dotfiles: $(DOTFILES)
 	$(INSTALL) -cbS -m 0644 -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(DOTFILES) $(USERHOME)
 	$(INSTALL) -d -m 0755  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(USERHOME)/.virtualenvs
 	$(INSTALL) -cbS -m 0644  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(VIRTUALENVS) $(USERHOME)/.virtualenvs
+
+sudoers: $(SUDOERS)
+	$(SUDO) $(INSTALL) -cS -m 0440 $< /etc/sudoers.d
 
 %: %.gpg
 	/opt/local/bin/blackbox_decrypt_all_files
