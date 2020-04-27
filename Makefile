@@ -21,7 +21,7 @@ SHAREDBINDIR=$(SHAREDHOME)/bin
 INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
-USERBINFILES=bin/url_encode_cwd gui/gui_environment
+USERBINFILES=bin/url_encode_cwd gui/gui_environment bin/vpn
 SHAREDBINFILES=bin/bb bin/preview bin/restart-postgresql-server bin/vscd
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
