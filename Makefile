@@ -21,7 +21,7 @@ SHAREDBINDIR=$(SHAREDHOME)/bin
 INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
-USERBINFILES=bin/url_encode_cwd gui/gui_environment bin/vpn
+USERBINFILES=bin/url_encode_cwd gui/gui_environment bin/vpn bin/view_next_submission
 SHAREDBINFILES=bin/bb bin/preview bin/restart-postgresql-server bin/vscd
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
@@ -67,7 +67,7 @@ dotfiles: $(DOTFILES)
 	$(INSTALL) -cbS -m 0644  -o $(EFFECTIVE_USER) -g $(EFFECTIVE_GROUP) $(VIRTUALENVS) $(USERHOME)/.virtualenvs
 
 sudoers: $(SUDOERS)
-	$(SUDO) $(INSTALL) -cS -m 0440 $< /etc/sudoers.d
+	$(SUDO) $(INSTALL) -cS -m 0440 $(SUDOERS) /etc/sudoers.d
 
 %: %.gpg
 	/opt/local/bin/blackbox_decrypt_all_files
@@ -88,3 +88,4 @@ debug:
 	@echo "USERBINFILES = ${USERBINFILES}"
 	@echo "DOTFILES = ${DOTFILES}"
 	@echo "VIRTUALENVS = ${VIRTUALENVS}"
+	@echo "SUDOERS = ${SUDOERS}"

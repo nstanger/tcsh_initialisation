@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/bin/osascript -e 'try' -e 'tell application "Skim" to close window 1' -e 'end try'
+/usr/bin/open -g -a /Applications/Skim.app "$*"
