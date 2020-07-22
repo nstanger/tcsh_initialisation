@@ -27,6 +27,7 @@
 *.listing
 *.synctex
 *.synctex(busy)
+*.pyg
 
 ####################
 # MAC CRUD
