@@ -1,0 +1,1 @@
+nstanger  ALL=(ALL) NOPASSWD: /Users/Shared/bin/restart-postgresql-server
