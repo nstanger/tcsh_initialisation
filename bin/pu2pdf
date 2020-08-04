@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Quickly convert PlantUML to PDF via SVG (since direct conversion is brittle).
+# WARNING: binaries are currently hard-coded. Need to hook this into some sort of more general configuration thing.
+#
+
+if [ $# -eq 0 ] ; then echo "Usage: pu2pdf <input file> [<output file>]" ; exit 1 ; fi
+
+PLANTUML="/usr/bin/java -Djava.awt.headless=true -jar /opt/local/share/java/plantuml.jar"
+INKSCAPE="/opt/local/bin/inkscape"
+
+inlocation=$(dirname "$1")
+inputfile=$(basename "$1")
+
+if [ "$inlocation" = "." ]
+then
+    inlocation=""
+else
+    inlocation="${inlocation}/"
+fi
+
+if [ -z "$2" ]
+then
+    outlocation="${inlocation}"
+    outputfile="${inputfile%.*}.pdf"
+else
+    outlocation=""
+    outputfile=$2
+fi
+
+$PLANTUML -tsvg -pipe < "${inlocation}${inputfile}" | $INKSCAPE --pipe --export-area-drawing --export-text-to-path --export-type=pdf --export-filename="${outlocation}${outputfile}"
