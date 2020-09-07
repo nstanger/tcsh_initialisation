@@ -1,7 +1,10 @@
 #!/bin/sh
 
-PLIST="/Library/LaunchDaemons/org.macports.mariadb-10.2-server.plist"
+PORT="/opt/local/bin/port"
 XMLSTARLET="/opt/local/bin/xmlstarlet"
+
+PORTNAME="mariadb-10.2-server"
+PLIST="/Library/LaunchDaemons/org.macports.${PORTNAME}.plist"
 
 limitset=$($XMLSTARLET sel --net -t -v 'count(/plist/dict/key[text()="SoftResourceLimits"])' $PLIST)
 
@@ -12,4 +15,6 @@ then
         --subnode "(/plist/dict/dict)[last()]" --type elem --name key --value NumberOfFiles \
         --subnode "(/plist/dict/dict)[last()]" --type elem --name integer --value 10240 \
         $PLIST
+    $PORT unload $PORTNAME
+    $PORT load $PORTNAME
 fi
