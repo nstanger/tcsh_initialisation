@@ -1,0 +1,2 @@
+#!/bin/sh
+ps ax | grep Safari | grep -v grep | cut -c1-5 | xargs kill -9
