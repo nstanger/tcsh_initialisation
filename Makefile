@@ -22,7 +22,7 @@ INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
 USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
 SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
 USERBINFILES=bin/url_encode_cwd gui/gui_environment bin/vpn bin/view_next_submission bin/die-safari
-SHAREDBINFILES=bin/bb bin/preview bin/restart-database-servers bin/vscd bin/pu2pdf bin/set-mysql-maxfiles
+SHAREDBINFILES=bin/bb bin/preview bin/restart-database-servers bin/vscd bin/pu2pdf bin/set-mariadb-maxfiles
 DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
 PATHFILES=$(wildcard gui/paths.d/*)
