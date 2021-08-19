@@ -29,7 +29,7 @@ include /opt/local/etc/logrotate.d
     copytruncate
 }
 
-"/Users/nstanger/Library/Application Support/Google/Drive/user_default/sync_log.log" {
+"/Users/nstanger/Library/Application Support/Google/DriveFS/migration/bns_config/user_default/sync_log.log" {
     rotate 6
     weekly
     copytruncate
