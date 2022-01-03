@@ -1,35 +1,8 @@
-# Set up tcsh environment
+# Set up shell environment
 
-Installs the following:
+Contents:
 
-* Wilfredo Sanchez’s tcsh initialisation scripts in /usr/local/share
-* shared initialisation scripts in /Users/Shared/init
-* user initialisation scripts in $HOME/Library/init
-* GUI environment variable configuration in /etc
-
-Any existing files are backed up before being overwritten.
-
-The effective initialisation order is:
-
-```sh
-/etc/csh.cshrc
-/etc/csh.login
-.tcshrc
-    environment.mine
-    environment.shared
-    rc.shared
-    rc.mine
-    aliases.mine
-    aliases.shared
-    completions.mine
-    completions.shared
-.login
-    path.mine
-    path.shared
-    login.mine
-    login.shared
-```
-
-# Other configurations
-
-Mainly `.` files that should be copied to `~`.
+* Shell configurations for bash, tcsh, zsh (to varying levels of depth and complexity).
+* Various useful shell scripts.
+* Configuration `.` files for various other tools that should be copied to `~`.
+* Tools to inject shell environment variables into GUI apps.

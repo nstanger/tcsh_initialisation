@@ -5,7 +5,7 @@ git/.gitconfig
 gui/environment
 net/.forward
 net/.netrc
-shared/environment.shared
+tcsh/shared/environment.shared
 sitecopy/.sitecopyrc
 wget/.wgetrc
 automount/auto_shares

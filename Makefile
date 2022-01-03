@@ -18,12 +18,12 @@ SHAREDHOME=/Users/Shared
 SHAREDINITDIR=$(SHAREDHOME)/init/tcsh
 SHAREDBINDIR=$(SHAREDHOME)/bin
 
-INITFILES=$(patsubst %.gpg,%,$(wildcard init/*))
-USERFILES=$(patsubst %.gpg,%,$(wildcard user/*))
-SHAREDFILES=$(patsubst %.gpg,%,$(wildcard shared/*))
+INITFILES=$(patsubst %.gpg,%,$(wildcard tcsh/init/*))
+USERFILES=$(patsubst %.gpg,%,$(wildcard tcsh/user/*))
+SHAREDFILES=$(patsubst %.gpg,%,$(wildcard tcsh/shared/*))
 USERBINFILES=bin/url_encode_cwd gui/gui_environment bin/vpn bin/view_next_submission bin/die-safari
 SHAREDBINFILES=bin/bb bin/preview bin/restart-database-servers bin/vscd bin/pu2pdf bin/set-mariadb-maxfiles
-DOTFILES=.login .logout .bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
+DOTFILES=tcsh/.login tcsh/.logout bash/.bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
 PATHFILES=$(wildcard gui/paths.d/*)
 VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
@@ -31,7 +31,7 @@ SUDOERS=$(wildcard sudoers.d/*)
 
 install: init user shared gui bin dotfiles sudoers
 
-init: 
+init:
 	$(INSTALL) -d $(INITDIR)
 	$(INSTALL) -cbS -m 0644 $(INITFILES) $(INITDIR)
 
