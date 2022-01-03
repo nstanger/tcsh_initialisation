@@ -1,3 +1,6 @@
+#####################################################################
+# Completions.
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _approximate
@@ -8,14 +11,17 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# useful stuff from https://scriptingosx.com/2019/06/moving-to-zsh/
 
-# case-insensitive globbing
+#####################################################################
+# Useful configuration from <https://scriptingosx.com/2019/06/moving-to-zsh/>.
+
+# Case-insensitive globbing
 setopt NO_CASE_GLOB
 
-# automatically add "cd" to bare directories
+# Automatically add "cd" to bare directories
 setopt AUTO_CD
 
+# Shell history
 # extended history information
 setopt EXTENDED_HISTORY
 # share history across multiple zsh sessions
@@ -28,47 +34,53 @@ setopt INC_APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST 
 # do not store duplications
 setopt HIST_IGNORE_DUPS
-#ignore duplicates when searching
+# ignore duplicates when searching
 setopt HIST_FIND_NO_DUPS
 # removes blank lines from history
 setopt HIST_REDUCE_BLANKS
 # verify !! command substitution
 setopt HIST_VERIFY
 
-# correction
+# Auto-correction
 setopt CORRECT
 setopt CORRECT_ALL
 
-# search instead of just up and down arrow (cf. ^R)
+# Search instead of just up and down arrow (cf. ^R)
 bindkey "^[[A" up-line-or-search # up arrow bindkey
 bindkey "^[[B" down-line-or-search # down arrow
 
-# from rcsh rc.shared
+
+#####################################################################
+# Configuration from old tcsh rc.shared.
 bindkey "\e[3~" delete-char
 bindkey "^U" backward-kill-line
 
-# from tcsh aliases.shared
+
+#####################################################################
+# Configuration from old tcsh aliases.shared.
 alias empty="rm -rf ~/.Trash/*"
 alias unlocktrash="sudo chown -R ${USER}:${GROUP} ~/.Trash/*"
-# alias ls="gls -FG"
 # note: requires Homebrew installed gls
 alias -g ls="/usr/local/bin/gls --classify --color=auto"
 alias -g l="ls -l"
 alias -g ll="ls -la"
 alias man="/usr/local/bin/openman"
 alias -g rm="rm -i"
-alias locate="glocate -d /var/db/locate.database"
+alias locate="/usr/local/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
 # alias sqlplus="rlwrap /Users/nstanger/bin/sqlplus"
 alias -g beep="tput bel"
 alias -g grep="ggrep --color=auto"
 
-# from tcsh aliases.mine
-# Set Terminal window and tab title.
+
+#####################################################################
+# Configuration from old tcsh aliases.mine.
+
+# Set Terminal window and tab title
 alias winname='printf "\033]2;%s\a"'
 alias tabname='printf "\033]1;%s\a"'
 
-# Various ISPMS and other related scripts.
+# Various ISPMS and other related scripts
 alias load_assessment-"php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
 alias merge="php $TEACHING_SHARED/ISPMS/scripts/marking/results_reporting/merge.php"
 alias marking_form="xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISPMS/scripts/marking/marking-form.tcl"
@@ -90,7 +102,9 @@ alias java_home="/usr/libexec/java_home"
 # Miscellaneous
 eval `/usr/local/bin/thefuck --alias`
 
-# shell resumption (https://superuser.com/a/328148)
+
+#####################################################################
+# Shell resumption <https://superuser.com/a/328148>.
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
 
     update_terminal_cwd() {
@@ -122,8 +136,12 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
     add-zsh-hook precmd update_terminal_cwd
 fi
 
-# https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/
-# also see comments of https://unix.stackexchange.com/a/582702 to change the default prompt character
+
+#####################################################################
+# Shell prompt.
+# <https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/>
+# Also see comments of <https://unix.stackexchange.com/a/582702> regarding
+# how to change the default prompt character.
 if [ -z "${SSH_CLIENT}" ]
 then
     PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%b '
@@ -132,9 +150,21 @@ else
 fi
 RPROMPT='$(git_super_status)'
 
-# addons
+
+#####################################################################
+# Shell add-ons.
+
+# automatic completion suggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# git prompt
 source /usr/local/opt/zsh-git-prompt/zshrc.sh
+
+# vi mode
 # source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# suggest existing aliases
 source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
+
+# syntax highlighting - MUST appear last!
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
