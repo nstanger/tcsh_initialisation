@@ -142,11 +142,11 @@ fi
 # <https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/>
 # Also see comments of <https://unix.stackexchange.com/a/582702> regarding
 # how to change the default prompt character.
-if [ -z "${SSH_CLIENT}" ]
+if [[ -v SSH_CLIENT ]]
 then
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%b '
-else
     PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%3~%(!:#:>)%b '
+else
+    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%b '
 fi
 RPROMPT='$(git_super_status)'
 
