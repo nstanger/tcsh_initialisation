@@ -104,6 +104,37 @@ eval `/usr/local/bin/thefuck --alias`
 
 
 #####################################################################
+# Configuration from old .tcshrc
+# if ($?DISPLAY) then
+# #     #/opt/local/bin/xrdb < ~/.Xdefaults
+#     /opt/local/bin/xrdb -merge $HOME/.Xresources
+# else
+if [[ -v SSH_CLIENT ]]
+then
+    # Hack to ensure that SSH logins still have environment variables that are
+    # specified using launchctl setenv in /etc/environment. Process is to extract
+    # the relevant lines into correct environment variable form and evaluate that
+    # directly.
+
+    # I tried this with awk, but it kept chopping the ) off the the end of the
+    # $() shell escape that defines JAVA_HOME.
+    # eval $(awk 'BEGIN {pattern = "^/bin/launchctl setenv"} $0 ~ pattern {print "export " $3 "=" $4 ";"}' /etc/environment)
+
+    # sed does the job once you find the right pattern. \w doesn't seem to work
+    # in BSD sed (escaping?), but [[:alnum:]_] works in both BSD and GNU sed
+    # with the -E option.
+    eval $(grep '^/bin/launchctl setenv' /etc/environment | cut -d ' ' -f 3- | sed -E 's/^([[:alnum:]_]+) (.+)$/export \1=\2;/g')
+    
+    # Also set base paths correctly, as per /etc/environment.
+    if [[ -e /usr/libexec/path_helper ]] then
+        PATH=""
+        MANPATH=""
+        eval $(/usr/libexec/path_helper -s)
+    fi
+fi
+
+
+#####################################################################
 # Shell resumption <https://superuser.com/a/328148>.
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
 
