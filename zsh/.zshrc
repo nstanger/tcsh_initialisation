@@ -72,7 +72,7 @@ alias locate="/usr/local/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
 # alias sqlplus="rlwrap /Users/nstanger/bin/sqlplus"
 alias -g beep="tput bel"
-alias -g grep="ggrep --color=auto"
+alias -g grep="/usr/local/bin/ggrep --color=auto"
 
 
 #####################################################################
@@ -106,6 +106,17 @@ eval `/usr/local/bin/thefuck --alias`
 
 
 #####################################################################
+# Configuration from old environment.shared and environment.mine
+export ALL_PAPERS_ROOT="${HOME}/Documents/Teaching"
+export CLASSPATH="${CLASSPATH}:/Users/nstanger/Research/PhD/Swift/classes"
+export DBCOURSES_WEB_ROOT="/Volumes/dbcourses"
+# export HANDBOOK_INSTALL_ROOT="/mnt/shares/infosci-shared/Teaching/DatabaseCourses/Web_Deployment"
+# export PRINTER="IS_07th_Floor"
+export TEACHING_SHARED="${HOME}/Documents/Teaching/Shared"
+export XSLT="saxon-b"
+
+
+#####################################################################
 # Configuration from old .tcshrc
 # if ($?DISPLAY) then
 # #     #/opt/local/bin/xrdb < ~/.Xdefaults
@@ -126,7 +137,7 @@ then
     # in BSD sed (escaping?), but [[:alnum:]_] works in both BSD and GNU sed
     # with the -E option.
     eval $(grep '^/bin/launchctl setenv' /etc/environment | cut -d ' ' -f 3- | sed -E 's/^([[:alnum:]_]+) (.+)$/export \1=\2;/g')
-    
+
     # Also set base paths correctly, as per /etc/environment.
     if [[ -e /usr/libexec/path_helper ]] then
         PATH=""
