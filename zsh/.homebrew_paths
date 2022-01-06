@@ -1,4 +1,5 @@
 /usr/local/opt/curl/bin
+/usr/local/opt/file-formula/bin
 /usr/local/opt/findutils/libexec/gnubin
 /usr/local/opt/gnu-getopt/bin
 /usr/local/opt/gnu-sed/libexec/gnubin
