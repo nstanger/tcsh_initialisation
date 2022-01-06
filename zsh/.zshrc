@@ -137,7 +137,7 @@ then
     # in BSD sed (escaping?), but [[:alnum:]_] works in both BSD and GNU sed
     # with the -E option.
     eval $(grep '^/bin/launchctl setenv' /etc/environment | cut -d ' ' -f 3- | sed -E 's/^([[:alnum:]_]+) (.+)$/export \1=\2;/g')
-    
+
     # Also set base paths correctly, as per /etc/environment.
     if [[ -e /usr/libexec/path_helper ]] then
         PATH=""
@@ -184,7 +184,7 @@ fi
 # Path. We can't just put files in /etc/paths.d because they are added
 # at the end not at the front.
 homebrew_paths=$(tr '\n' ':' < ~/.homebrew_paths)
-export PATH="${homebrew_paths}${PATH}"
+export PATH="${homebrew_paths}${PATH}:${HOME}/bin:/Users/Shared/bin"
 
 
 #####################################################################
