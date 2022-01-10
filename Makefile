@@ -26,7 +26,7 @@ SHAREDBINFILES=bin/bb bin/preview bin/restart-database-servers bin/vscd bin/pu2p
 DOTFILES=tcsh/.login tcsh/.logout bash/.bashrc $(patsubst %.gpg,%,$(shell $(FIND) git -type f)) \
 	$(shell $(FIND) logrotate -type f)
 PATHFILES=$(wildcard gui/paths.d/*)
-VIRTUALENVS=$(shell $(FIND) .virtualenvs -name "*.txt")
+VIRTUALENVS=$(shell $(FIND) virtualenvs -name "*.txt")
 SUDOERS=$(wildcard sudoers.d/*)
 
 install: init user shared gui bin dotfiles sudoers
