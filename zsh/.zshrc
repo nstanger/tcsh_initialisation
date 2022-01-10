@@ -202,22 +202,24 @@ RPROMPT='$(git_super_status)'
 
 
 #####################################################################
-# Add-on configuration.
-# zsh-autosuggestions - slightly lighter shade of grey
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=246"
-
-# zsh-git-prompt Haskell version (hacked into place)
-export GIT_PROMPT_EXECUTABLE="haskell"
-
-
-#####################################################################
 # Shell add-ons.
 
 # automatic completion suggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# use a slightly lighter shade of grey
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=246"
 
 # git prompt
 source /usr/local/opt/zsh-git-prompt/zshrc.sh
+# use Haskell executable (hacked into place - likely to break on update!)
+export GIT_PROMPT_EXECUTABLE="haskell"
+# set colors to more or less match git status config; defaults are OK for most
+# branch: black bold underline
+export ZSH_THEME_GIT_PROMPT_BRANCH="%{\e[$color[underline]m$fg_bold[black]%}"
+# staged (= added): green
+export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{●%G%}"
+# changed: red
+export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{✚%G%}"
 
 # vi mode
 # source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -225,5 +227,5 @@ source /usr/local/opt/zsh-git-prompt/zshrc.sh
 # suggest existing aliases
 source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
 
-# syntax highlighting - MUST appear last!
+# syntax highlighting - MUST be loaded last!
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
