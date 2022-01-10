@@ -51,6 +51,12 @@ bindkey "^[[B" down-line-or-search # down arrow
 
 
 #####################################################################
+# Python virtualenv wrapper. This appears to conflict with the "ls"
+# aliases below, so it has to happen first.
+source virtualenvwrapper.sh
+
+
+#####################################################################
 # Configuration from old tcsh rc.shared.
 bindkey "\e[3~" delete-char
 bindkey "^U" backward-kill-line
