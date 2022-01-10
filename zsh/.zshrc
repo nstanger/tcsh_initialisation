@@ -202,6 +202,15 @@ RPROMPT='$(git_super_status)'
 
 
 #####################################################################
+# Add-on configuration.
+# zsh-autosuggestions - slightly lighter shade of grey
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=246"
+
+# zsh-git-prompt Haskell version (hacked into place)
+export GIT_PROMPT_EXECUTABLE="haskell"
+
+
+#####################################################################
 # Shell add-ons.
 
 # automatic completion suggestions
