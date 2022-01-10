@@ -194,9 +194,9 @@ export PATH="${homebrew_paths}${PATH}:${HOME}/bin:/Users/Shared/bin"
 # how to change the default prompt character.
 if [[ -v SSH_CLIENT ]]
 then
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%3~%(!:#:>)%b '
+    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%3~%(!:#:>)%f%b '
 else
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%b '
+    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%f%b '
 fi
 RPROMPT='$(git_super_status)'
 
