@@ -220,7 +220,10 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=246"
 # git prompt
 source /usr/local/opt/zsh-git-prompt/zshrc.sh
 # use Haskell executable (hacked into place - likely to break on update!)
-export GIT_PROMPT_EXECUTABLE="haskell"
+if [[ -e /usr/local/opt/zsh-git-prompt/src/.bin/gitstatus ]]
+then
+    export GIT_PROMPT_EXECUTABLE="haskell"
+fi
 # set colors to more or less match git status config; defaults are OK for most
 # branch: black bold underline
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{\e[$color[underline]m$fg_bold[black]%}"
