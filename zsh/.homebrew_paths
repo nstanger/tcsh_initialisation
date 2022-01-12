@@ -10,7 +10,7 @@
 /usr/local/opt/icu4c/sbin
 /usr/local/opt/m4/bin
 /usr/local/opt/make/libexec/gnubin
-/usr/local/opt/mysql@5.6/bin
+/usr/local/opt/mariadb@10.2/bin
 /usr/local/opt/openldap/bin
 /usr/local/opt/openldap/sbin
 /usr/local/opt/openssl@3/bin
