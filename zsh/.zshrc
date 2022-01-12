@@ -211,7 +211,6 @@ RPROMPT='$(git_super_status)'
 
 #####################################################################
 # Set up Perl to use "local::lib".
-PERL_MM_OPT="INSTALL_BASE=${HOME}/Library/perl5" cpan local::lib
 eval "$(perl -I${HOME}/Library/perl5/lib/perl5 -Mlocal::lib=${HOME}/Library/perl5)"
 
 
