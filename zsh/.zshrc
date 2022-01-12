@@ -18,36 +18,52 @@ compinit
 # Case-insensitive globbing
 setopt NO_CASE_GLOB
 
-# Automatically add "cd" to bare directories
+# Directory changing
+# directory search path (auto-complete directories, cf. tcsh)
+cdpath=($HOME $HOME/Documents/Development $HOME/Documents/Teaching)
+# add "cd" to bare directory names
 setopt AUTO_CD
+# push the previous directory onto the stack
+setopt AUTO_PUSHD
+# maximum directory stack size
+DIRSTACKSIZE=10
+# ignore duplicates in the directory stack
+setopt PUSHD_IGNORE_DUPS
+# swap meaning of cd +/- so that -2 means item numbered 2 in the stack,
+# not the second from the bottom
+setopt PUSHD_MINUS
 
 # Shell history
 # extended history information
 setopt EXTENDED_HISTORY
-# share history across multiple zsh sessions
+# share history across multiple zsh sessions (implies INC_APPEND_HISTORY)
 setopt SHARE_HISTORY
 # append to history
 setopt APPEND_HISTORY
-# adds commands as they are typed, not at shell exit
-setopt INC_APPEND_HISTORY
 # expire duplicates first
 setopt HIST_EXPIRE_DUPS_FIRST 
-# do not store duplications
-setopt HIST_IGNORE_DUPS
+# do not store any duplications
+setopt HIST_IGNORE_ALL_DUPS
 # ignore duplicates when searching
 setopt HIST_FIND_NO_DUPS
-# removes blank lines from history
+# don't save duplicates to the history file
+setopt HIST_SAVE_NO_DUPS
+# removes extra blanks from commmands in history
 setopt HIST_REDUCE_BLANKS
 # verify !! command substitution
 setopt HIST_VERIFY
 
 # Auto-correction
 setopt CORRECT
-setopt CORRECT_ALL
+# setopt CORRECT_ALL
 
 # Search instead of just up and down arrow (cf. ^R)
 bindkey "^[[A" up-line-or-search # up arrow bindkey
 bindkey "^[[B" down-line-or-search # down arrow
+
+# Input/output
+# Allow comments in interactive shells
+setopt INTERACTIVE_COMMENTS
 
 
 #####################################################################
@@ -201,10 +217,10 @@ export PATH="${homebrew_paths}${PATH}:${HOME}/bin:/Users/Shared/bin"
 if [[ -v SSH_CLIENT ]]
 then
     # PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%3~%(!:#:>)%f%b '
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT='%B%(?.%F{green}✔.%F{red}✘|%?) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 else
     # PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%f%b '
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT='%B%(?.%F{green}✔.%F{red}✘|%?) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 fi
 RPROMPT='$(git_super_status)'
 
