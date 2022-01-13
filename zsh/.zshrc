@@ -127,7 +127,10 @@ alias java_home="/usr/libexec/java_home"
 # alias plantuml="/usr/bin/java -Djava.awt.headless=true -jar /usr/local/bin/plantuml.jar"
 
 # Miscellaneous
-eval `/usr/local/bin/thefuck --alias`
+eval $(/usr/local/bin/thefuck --alias)
+
+# Others
+alias saxon-b="java -jar /usr/local/share/saxon-b/saxon9.jar"
 
 
 #####################################################################
