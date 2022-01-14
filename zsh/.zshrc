@@ -82,6 +82,17 @@ bindkey "^U" backward-kill-line
 
 
 #####################################################################
+# Configuration from old environment.shared and environment.mine
+export ALL_PAPERS_ROOT="${HOME}/Documents/Teaching"
+export CLASSPATH="${CLASSPATH}:/Users/nstanger/Research/PhD/Swift/classes"
+export DBCOURSES_WEB_ROOT="/Volumes/dbcourses"
+# export HANDBOOK_INSTALL_ROOT="/mnt/shares/infosci-shared/Teaching/DatabaseCourses/Web_Deployment"
+# export PRINTER="IS_07th_Floor"
+export TEACHING_SHARED="${HOME}/Documents/Teaching/Shared"
+export XSLT="saxon-b"
+
+
+#####################################################################
 # Configuration from old tcsh aliases.shared.
 alias empty="rm -rf ~/.Trash/*"
 alias unlocktrash="sudo chown -R ${USER}:${GROUP} ~/.Trash/*"
@@ -131,17 +142,6 @@ eval $(/usr/local/bin/thefuck --alias)
 
 # Others
 alias saxon-b="java -jar /usr/local/share/saxon-b/saxon9.jar"
-
-
-#####################################################################
-# Configuration from old environment.shared and environment.mine
-export ALL_PAPERS_ROOT="${HOME}/Documents/Teaching"
-export CLASSPATH="${CLASSPATH}:/Users/nstanger/Research/PhD/Swift/classes"
-export DBCOURSES_WEB_ROOT="/Volumes/dbcourses"
-# export HANDBOOK_INSTALL_ROOT="/mnt/shares/infosci-shared/Teaching/DatabaseCourses/Web_Deployment"
-# export PRINTER="IS_07th_Floor"
-export TEACHING_SHARED="${HOME}/Documents/Teaching/Shared"
-export XSLT="saxon-b"
 
 
 #####################################################################
