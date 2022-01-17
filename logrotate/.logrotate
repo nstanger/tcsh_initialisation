@@ -15,7 +15,7 @@ dateext
 compress
 
 # Add your logrotate scripts to this directory for convenient inclusion.
-include /opt/local/etc/logrotate.d
+include /usr/local/etc/logrotate.d
 
 /Users/nstanger/Library/Logs/clamscan.log {
     rotate 6
