@@ -9,7 +9,7 @@ install: auto_shares
 	@echo "Use  sudo automount -vc  to reload the mounts."
 
 auto_shares: auto_shares.gpg
-	@/opt/local/bin/blackbox_decrypt_all_files
+	@/usr/local/bin/blackbox_decrypt_all_files
 	@chown nstanger auto_shares
 	@chmod 600 auto_shares
 
