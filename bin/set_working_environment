@@ -1,0 +1,20 @@
+#!/bin/sh
+
+BASE_PATH="$ALL_PAPERS_ROOT/$1"
+USER_HOME=~
+
+# echo "BASE_PATH = $BASE_PATH"
+# echo "USER_HOME = $USER_HOME"
+# echo "PWD = $PWD"
+
+if [ "$PWD" = "$USER_HOME" ]
+then
+    TARGET_PATH="$BASE_PATH"
+else
+    TARGET_PATH="$PWD"
+fi
+
+# echo "TARGET_PATH = $TARGET_PATH"
+
+echo cd "$TARGET_PATH"
+cd "$TARGET_PATH"
