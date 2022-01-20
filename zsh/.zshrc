@@ -125,12 +125,6 @@ alias marking_form="xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISPMS/scripts/ma
 alias process_podcast="python $TEACHING_SHARED/Tools/process_podcast/process_podcast.py"
 alias process_submissions="python $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/process_submissions.py"
 
-# Android SDK tools
-alias adb="~/Library/Android/sdk/platform-tools/adb"
-alias fastboot="~/Library/Android/sdk/platform-tools/fastboot"
-alias android="~/Library/Android/sdk/tools/android"
-#alias rstudio="open /Applications/RStudio.app"
-
 # Java
 alias rstudio="sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
 alias java_home="/usr/libexec/java_home"
