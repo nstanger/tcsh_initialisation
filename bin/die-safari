@@ -1,5 +1,6 @@
 #!/bin/sh
-# ps ax | grep Safari | grep -v grep | cut -c1-5 | xargs kill -9
+# Nope, this seems to work more effectively.
+ps ax | grep Safari | grep -v grep | cut -c1-5 | xargs kill -9
 
 # this may be more effective
-launchctl list | grep -i safari | awk '{print $3}' | xargs launchctl stop
+# launchctl list | grep -i safari | awk '{print $3}' | xargs launchctl stop
