@@ -23,7 +23,7 @@ setopt NO_CASE_GLOB
 
 # Directory changing
 # directory search path (auto-complete directories, cf. tcsh)
-cdpath=($HOME $HOME/Documents/Development $HOME/Documents/Teaching)
+cdpath=($HOME $HOME/Documents $HOME/Documents/Development $HOME/Documents/Teaching)
 # add "cd" to bare directory names
 setopt AUTO_CD
 # push the previous directory onto the stack
