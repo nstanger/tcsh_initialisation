@@ -9,6 +9,7 @@
 /usr/local/opt/grep/libexec/gnubin
 /usr/local/opt/icu4c/bin
 /usr/local/opt/icu4c/sbin
+/usr/local/opt/inetutils/libexec/gnubin
 /usr/local/opt/m4/bin
 /usr/local/opt/make/libexec/gnubin
 /usr/local/opt/mariadb@10.2/bin
