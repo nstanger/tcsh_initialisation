@@ -106,7 +106,6 @@ alias man="/usr/local/bin/openman"
 alias -g rm="rm -i"
 alias locate="/usr/local/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
-# alias sqlplus="rlwrap /Users/nstanger/bin/sqlplus"
 alias -g beep="tput bel"
 alias -g grep="/usr/local/bin/ggrep --color=auto"
 
