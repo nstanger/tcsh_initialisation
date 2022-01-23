@@ -1,7 +1,7 @@
-export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.7'
-export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.7'
-export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.7'
-source /opt/local/bin/virtualenvwrapper.sh-3.7
+export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3'
+export VIRTUALENVWRAPPER_VIRTUALENV='/usr/local/bin/virtualenv'
+# export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/usr/local/bin/virtualenv-clone'
+source /usr/local/bin/virtualenvwrapper.sh
 
 alias ls="/usr/local/bin/gls --classify --color=auto"
 alias l="ls -l"

@@ -6,8 +6,8 @@
 
 if [ $# -eq 0 ] ; then echo "Usage: pu2pdf <input file> [<output file>]" ; exit 1 ; fi
 
-PLANTUML="/usr/bin/java -Djava.awt.headless=true -jar /opt/local/share/java/plantuml.jar"
-INKSCAPE="/opt/local/bin/inkscape"
+PLANTUML="/usr/local/bin/plantuml"
+INKSCAPE="/usr/local/bin/inkscape"
 
 inlocation=$(dirname "$1")
 inputfile=$(basename "$1")
