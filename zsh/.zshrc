@@ -93,14 +93,17 @@ bindkey "^U" backward-kill-line
 
 
 #####################################################################
-# Configuration from old environment.shared and environment.mine
-export ALL_PAPERS_ROOT="${HOME}/Documents/Teaching"
-export CLASSPATH="${CLASSPATH}:/Users/nstanger/Research/PhD/Swift/classes"
-export DBCOURSES_WEB_ROOT="/Volumes/dbcourses"
-# export HANDBOOK_INSTALL_ROOT="/mnt/shares/infosci-shared/Teaching/DatabaseCourses/Web_Deployment"
-# export PRINTER="IS_07th_Floor"
-export TEACHING_SHARED="${HOME}/Documents/Teaching/Shared"
-export XSLT="saxon-b"
+# Environment variables for TEXMF paths. For some reason these don't
+# work in .zshenv ("/Library/TeX/texbin/kpsexpand: line 117: kpsewhich:
+# command not found"). *shrug*
+export TEXMFCONFIG=$(/Library/TeX/texbin/kpsexpand '$TEXMFCONFIG')
+export TEXMFDIST=$(/Library/TeX/texbin/kpsexpand '$TEXMFDIST')
+export TEXMFHOME=$(/Library/TeX/texbin/kpsexpand '$TEXMFHOME')
+export TEXMFLOCAL=$(/Library/TeX/texbin/kpsexpand '$TEXMFLOCAL')
+export TEXMFMAIN=$(/Library/TeX/texbin/kpsexpand '$TEXMFMAIN')
+export TEXMFSYSCONFIG=$(/Library/TeX/texbin/kpsexpand '$TEXMFSYSCONFIG')
+export TEXMFSYSVAR=$(/Library/TeX/texbin/kpsexpand '$TEXMFSYSVAR')
+export TEXMFVAR=$(/Library/TeX/texbin/kpsexpand '$TEXMFVAR')
 
 
 #####################################################################
@@ -148,37 +151,6 @@ alias saxon-b="java -jar /usr/local/share/saxon-b/saxon9.jar"
 
 
 #####################################################################
-# Configuration from old .tcshrc
-# if ($?DISPLAY) then
-# #     #/opt/local/bin/xrdb < ~/.Xdefaults
-#     /opt/local/bin/xrdb -merge $HOME/.Xresources
-# else
-if [[ -v SSH_CLIENT ]]
-then
-    # Hack to ensure that SSH logins still have environment variables that are
-    # specified using launchctl setenv in /etc/environment. Process is to extract
-    # the relevant lines into correct environment variable form and evaluate that
-    # directly.
-
-    # I tried this with awk, but it kept chopping the ) off the the end of the
-    # $() shell escape that defines JAVA_HOME.
-    # eval $(awk 'BEGIN {pattern = "^/bin/launchctl setenv"} $0 ~ pattern {print "export " $3 "=" $4 ";"}' /etc/environment)
-
-    # sed does the job once you find the right pattern. \w doesn't seem to work
-    # in BSD sed (escaping?), but [[:alnum:]_] works in both BSD and GNU sed
-    # with the -E option.
-    eval $(grep '^/bin/launchctl setenv' /etc/environment | cut -d ' ' -f 3- | sed -E 's/^([[:alnum:]_]+) (.+)$/export \1=\2;/g')
-    
-    # Also set base paths correctly, as per /etc/environment.
-    if [[ -e /usr/libexec/path_helper ]] then
-        PATH=""
-        MANPATH=""
-        eval $(/usr/libexec/path_helper -s)
-    fi
-fi
-
-
-#####################################################################
 # Shell resumption <https://superuser.com/a/328148>.
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
 
@@ -210,12 +182,6 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
     autoload add-zsh-hook
     add-zsh-hook precmd update_terminal_cwd
 fi
-
-#####################################################################
-# Path. We can't just put files in /etc/paths.d because they are added
-# at the end not at the front.
-homebrew_paths=$(tr '\n' ':' < ~/.homebrew_paths)
-export PATH="${homebrew_paths}${PATH}:${HOME}/bin:/Users/Shared/bin"
 
 
 #####################################################################
