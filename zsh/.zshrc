@@ -226,11 +226,12 @@ export PATH="${homebrew_paths}${PATH}:${HOME}/bin:/Users/Shared/bin"
 if [[ -v SSH_CLIENT ]]
 then
     # PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%3~%(!:#:>)%f%b '
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘|%?) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT='%B%(?.%F{green}✔%f.%F{red}✘|%?%f) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 else
     # PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%f%b '
-    PROMPT='%B%(?.%F{green}✔.%F{red}✘|%?) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT='%B%(?.%F{green}✔%f.%F{red}✘|%?%f) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 fi
+# $git_super_status supplied by zsh-git-prompt add-on.
 RPROMPT='$(git_super_status)'
 
 
@@ -255,12 +256,13 @@ then
     export GIT_PROMPT_EXECUTABLE="haskell"
 fi
 # set colors to more or less match git status config; defaults are OK for most
-# branch: black bold underline
+# branch: black bold underline (note: don't reset_color at the end as it kills
+# all formatting)
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{\e[$color[underline]m$fg_bold[black]%}"
 # staged (= added): green
-export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{●%G%}"
+export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]●%G$fg[black]${reset_color}%}"
 # changed: red
-export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{✚%G%}"
+export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]✚%G$fg[black]${reset_color}%}"
 
 # vi mode
 # source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
