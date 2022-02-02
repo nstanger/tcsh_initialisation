@@ -76,8 +76,19 @@ source virtualenvwrapper.sh
 
 
 #####################################################################
-# Configuration from old tcsh rc.shared.
+# Key bindings.
+
+# backspace should be bound by default, being careful
+bindkey "^H" backward-delete-char
+# forward delete
 bindkey "\e[3~" delete-char
+
+# option backspace should be bound by default, being careful
+bindkey "\e^?" backward-kill-word
+# option forward delete
+bindkey "\e(" kill-word
+
+# control U should be bound by default, being careful
 bindkey "^U" backward-kill-line
 
 
