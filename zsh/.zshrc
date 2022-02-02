@@ -104,10 +104,15 @@ export XSLT="saxon-b"
 
 
 #####################################################################
-# Configuration from old tcsh aliases.shared.
+# Aliases.
+
+# Miscellaneous
 alias empty="rm -rf ~/.Trash/*"
 alias unlocktrash="sudo chown -R ${USER}:${GROUP} ~/.Trash/*"
-# note: requires Homebrew installed gls
+# Note: requires Homebrew installed gls
+# Alias expansion causes issues with things like brew ls or git ls;
+# the only solution so far is to quote the ls e.g., git \ls or git "ls".
+# Might a function fix this?
 alias -g ls="/usr/local/bin/gls --classify --color=auto"
 alias -g l="ls -l"
 alias -g ll="ls -la"
@@ -119,10 +124,6 @@ alias locate="/usr/local/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
 alias -g beep="tput bel"
 alias -g grep="/usr/local/bin/ggrep --color=auto"
-
-
-#####################################################################
-# Configuration from old tcsh aliases.mine.
 
 # Set Terminal window and tab title
 alias winname='printf "\033]2;%s\a"'
@@ -141,10 +142,8 @@ alias java_home="/usr/libexec/java_home"
 # Homebrew plantuml already does headless
 # alias plantuml="/usr/bin/java -Djava.awt.headless=true -jar /usr/local/bin/plantuml.jar"
 
-# Miscellaneous
-eval $(/usr/local/bin/thefuck --alias)
-
 # Others
+eval $(/usr/local/bin/thefuck --alias)
 alias saxon-b="java -jar /usr/local/share/saxon-b/saxon9.jar"
 
 
