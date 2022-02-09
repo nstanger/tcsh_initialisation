@@ -110,22 +110,22 @@ export TEXMFVAR=$(/Library/TeX/texbin/kpsexpand '$TEXMFVAR')
 # Aliases.
 
 # Miscellaneous
-alias empty="rm -rf ~/.Trash/*"
-alias unlocktrash="sudo chown -R ${USER}:${GROUP} ~/.Trash/*"
+alias empty="/bin/rm -rf ~/.Trash/*"
+alias unlocktrash="/usr/bin/sudo /usr/sbin/chown -R ${USER}:${GROUP} ~/.Trash/*"
 # Note: requires Homebrew installed gls
 # Alias expansion causes issues with things like brew ls or git ls;
 # the only solution so far is to quote the ls e.g., git \ls or git "ls".
 # Might a function fix this?
 alias -g ls="/usr/local/bin/gls --classify --color=auto"
-alias -g l="ls -l"
-alias -g ll="ls -la"
+alias -g l="/usr/local/bin/gls --classify --color=auto -l"
+alias -g ll="/usr/local/bin/gls --classify --color=auto -la"
 alias -g l@="/bin/ls -l@"
 alias -g ll@="/bin/ls -al@"
 alias man="/usr/local/bin/openman"
-alias -g rm="rm -i"
+alias -g rm="/bin/rm -i"
 alias locate="/usr/local/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
-alias -g beep="tput bel"
+alias -g beep="/usr/bin/tput bel"
 alias -g grep="/usr/local/bin/ggrep --color=auto"
 
 # Set Terminal window and tab title
@@ -133,21 +133,21 @@ alias winname='printf "\033]2;%s\a"'
 alias tabname='printf "\033]1;%s\a"'
 
 # Various ISPMS and other related scripts
-alias load_assessment-"php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
-alias merge="php $TEACHING_SHARED/ISPMS/scripts/marking/results_reporting/merge.php"
-alias marking_form="xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISPMS/scripts/marking/marking-form.tcl"
-alias process_podcast="python $TEACHING_SHARED/Tools/process_podcast/process_podcast.py"
-alias process_submissions="python $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/process_submissions.py"
+alias load_assessment-"/usr/local/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
+alias merge="/usr/local/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/results_reporting/merge.php"
+alias marking_form="/opt/X11/bin/xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISPMS/scripts/marking/marking-form.tcl"
+alias process_podcast="/usr/bin/python $TEACHING_SHARED/Tools/process_podcast/process_podcast.py"
+alias process_submissions="/usr/bin/python $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/process_submissions.py"
 
 # Java
-alias rstudio="sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
+alias rstudio="/bin/sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
 alias java_home="/usr/libexec/java_home"
 # Homebrew plantuml already does headless
 # alias plantuml="/usr/bin/java -Djava.awt.headless=true -jar /usr/local/bin/plantuml.jar"
 
 # Others
 eval $(/usr/local/bin/thefuck --alias)
-alias saxon-b="java -jar /usr/local/share/saxon-b/saxon9.jar"
+alias saxon-b="/usr/bin/java -jar /usr/local/share/saxon-b/saxon9.jar"
 
 
 #####################################################################
