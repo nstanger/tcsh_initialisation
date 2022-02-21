@@ -24,7 +24,8 @@ compinit
 # the path in /etc/zprofile, which is sourced *after* .zshenv >:(.
 homebrew_paths=($(cat ${HOME}/.homebrew_paths))
 path=($homebrew_paths[@] $path[@])
-
+# Ensure path has no duplicate entries.
+typeset -U PATH
 
 #####################################################################
 # Useful configuration from <https://scriptingosx.com/2019/06/moving-to-zsh/>.
