@@ -141,7 +141,6 @@ alias process_submissions="/usr/bin/python $TEACHING_SHARED/ISPMS/scripts/markin
 
 # Java
 alias rstudio="/bin/sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
-alias java_home="/usr/libexec/java_home"
 # Homebrew plantuml already does headless
 # alias plantuml="/usr/bin/java -Djava.awt.headless=true -jar /usr/local/bin/plantuml.jar"
 
