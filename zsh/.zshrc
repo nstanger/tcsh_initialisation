@@ -16,6 +16,17 @@ compinit
 
 
 #####################################################################
+# Path. We can't just put files in /etc/paths.d because they are added
+# at the end not at the front.
+# Take advantage of the fact that $PATH (string) and $path (array) are
+# automatically kept in sync.
+# This is here rather than in .zshenv because Apple stupidly initialises
+# the path in /etc/zprofile, which is sourced *after* .zshenv >:(.
+homebrew_paths=($(cat ${HOME}/.homebrew_paths))
+path=($homebrew_paths[@] $path[@])
+
+
+#####################################################################
 # Useful configuration from <https://scriptingosx.com/2019/06/moving-to-zsh/>.
 
 # Case-insensitive globbing

@@ -1,11 +1,4 @@
 #####################################################################
-# Path. We can't just put files in /etc/paths.d because they are added
-# at the end not at the front.
-homebrew_paths=$(tr '\n' ':' < ${HOME}/.homebrew_paths)
-export PATH="${homebrew_paths}${PATH}:${HOME}/bin:/Users/Shared/bin"
-
-
-#####################################################################
 # Environment variables.
 # Note that TEXMF variables are defined in .zshrc because for some
 # reason they don't work here ("/Library/TeX/texbin/kpsexpand: line 117:
