@@ -30,7 +30,7 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 # library paths
 export CLASSPATH="${HOME}/Library/Java:."
 export PERL5LIB="/usr/local/lib/perl5"
-export R_LIBS_SITE="/usr/local/lib/R/library"
+# export R_LIBS_SITE="/usr/local/lib/R/library"
 export TCLLIBPATH="/usr/lib"
 
 # misc configuration
