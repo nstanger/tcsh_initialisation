@@ -22,10 +22,15 @@ compinit
 # automatically kept in sync.
 # This is here rather than in .zshenv because Apple stupidly initialises
 # the path in /etc/zprofile, which is sourced *after* .zshenv >:(.
-homebrew_paths=($(cat ${HOME}/.homebrew_paths))
-path=($homebrew_paths[@] $path[@])
 # Ensure path has no duplicate entries.
-typeset -U PATH
+typeset -U path
+homebrew_paths=($(cat ${HOME}/.homebrew_paths))
+path=($homebrew_paths[@] $path[@] ${HOME}/bin /Users/Shared/bin)
+
+# Homebrew automatically installs the following in /etc/paths.d:
+# /Library/TeX/texbin
+# /opt/X11/bin
+
 
 #####################################################################
 # Useful configuration from <https://scriptingosx.com/2019/06/moving-to-zsh/>.
