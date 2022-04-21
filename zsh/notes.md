@@ -14,7 +14,7 @@ On macOS, zsh reads the following files in this order (<https://zsh.sourceforge.
 
 ## Configuring the path
 
-Putting paths into `/etc/paths` is probably a bad idea, as OS updates will probably stomp on them. Paths added to `/etc/paths.d`, appear to be safe, so this is a good way to add paths where order is unimportant.
+Putting paths into `/etc/paths` is probably a bad idea, as OS updates will probably stomp on them. Paths added to `/etc/paths.d`, appear to be safe, so this is a good way to add paths where order is unimportant (for example, I add `/usr/libexec` and `/usr/local/sbin` in `/etc/paths.d/99-local`).
 
 For paths where order *is* important (e.g., masking existing executables with ones installed by Homebrew) you can easily prepend them to the path by taking advantage of the `path` array (`PATH` and `path` are automatically synchronised in zsh). Save the paths in a file (one per line), read the file into an array variable, then concatenate that with the existing `path`. For example:
 
