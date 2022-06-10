@@ -17,7 +17,7 @@
 /usr/local/opt/openssl@3/bin
 /usr/local/opt/php@7.4/bin
 /usr/local/opt/php@7.4/sbin
-/usr/local/opt/postgresql@10/bin
+/usr/local/opt/postgresql@14/bin
 /usr/local/opt/ruby/bin
 /usr/local/opt/sqlite/bin
 /usr/local/opt/tcl-tk/bin
