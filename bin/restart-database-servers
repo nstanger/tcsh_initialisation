@@ -1,5 +1,12 @@
 #!/bin/bash
 
+BREW=/usr/local/bin/brew
+LOGGER=/usr/local/bin/glogger
+SLEEP=/usr/local/bin/gsleep
+GREP=/usr/local/bin/ggrep
+AWK=/usr/local/bin/gawk
+PS=/bin/ps
+
 if [ -z $1 ]
 then
     delay=180
@@ -7,29 +14,22 @@ else
     delay=$1
 fi
 
-servers=$(/opt/local/bin/port installed "postgresql*" "mariadb*" "mongodb*" | grep server | grep active | cut -d@ -f1 | tr -d ' ')
+servers=$(${BREW} services list | ${GREP} started | ${GREP} 'mariadb\|postgres\|mongo' | ${AWK} '{print $1}')
 
-/usr/bin/logger Will restart $servers in $delay seconds...
-/bin/sleep $delay
+$LOGGER Will restart $servers in $delay seconds...
+$SLEEP $delay
 
 for s in $servers
 do
-    process=$(ps ax | grep "$s" | grep daemondo)
-    if [ -z "$s" ]
-    then
-        /usr/bin/logger $s is not running.
-    else
-        /usr/bin/logger Restarting $s...
-        /opt/local/bin/port unload $s
-        /opt/local/bin/port load $s
+    $LOGGER Restarting $s...
+    $BREW services restart $s
 
-        /bin/sleep 10
-        process=$(ps ax | grep "$s" | grep daemondo)
-        if [ -z "$s" ]
-        then
-            /usr/bin/logger Failed to restart $s!
-        else
-            /usr/bin/logger Restarted $s successfully.
-        fi
+    # $SLEEP 10
+    process=$(${BREW} services | ${GREP} $s | ${GREP} started)
+    if [ -z "$process" ]
+    then
+        $LOGGER Failed to restart $s!
+    else
+        $LOGGER Restarted $s successfully.
     fi
 done
