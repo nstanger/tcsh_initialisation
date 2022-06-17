@@ -6,7 +6,7 @@
     <key>Label</key>
     <string>set.postgresql.netrestart</string>
     <key>Program</key>
-    <string>/Users/Shared/bin/set-postgresql-netrestart</string>
+    <string>/Users/nstanger/bin/set-postgresql-netrestart</string>
     <key>RunAtLoad</key>
     <true/>
     <key>StartCalendarInterval</key>

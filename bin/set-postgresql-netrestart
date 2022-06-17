@@ -1,17 +1,16 @@
 #!/bin/sh
 
-PORT="/opt/local/bin/port"
-XMLSTARLET="/opt/local/bin/xmlstarlet"
+BREW="/usr/local/bin/brew"
+XMLSTARLET="/usr/local/bin/xmlstarlet"
 
-PORTNAME="postgresql10-server"
-PLIST="/Library/LaunchDaemons/org.macports.${PORTNAME}.plist"
+FORMULA="postgresql"
+PLIST="${HOME}/Library/LaunchAgents/homebrew.mxcl.${FORMULA}.plist"
 
 netrestartset=$($XMLSTARLET sel --net -t -v 'count(/plist/dict/key[text()="ProgramArguments"]/following::array[1]/string[text()="--restart-netchange"])' $PLIST)
 
 if [ $netrestartset -eq 0 ]
 then
     $XMLSTARLET ed --inplace --subnode "(/plist/dict/key[text()='ProgramArguments']/following::array[1])[last()]" \
-        --type elem --name string --value --restart-netchange $PLIST
-    $PORT unload $PORTNAME
-    $PORT load $PORTNAME
+        --type elem --name string --value '--restart-netchange' $PLIST
+    $BREW services restart $FORMULA
 fi
