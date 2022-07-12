@@ -1,0 +1,15 @@
+#!/bin/sh
+
+PSQL=/usr/local/bin/psql
+
+PLIST="${HOME}/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+
+if ${PSQL} -h sobmac0011.staff.uod.otago.ac.nz -d scratch -q -c 'select null;' > /dev/null 2> /dev/null
+then
+    echo postgresql up $?
+elif [ -e ${PLIST} ]
+then
+    echo postgresql up but not reachable $?
+else
+    echo postgresql down $?
+fi
