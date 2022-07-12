@@ -24,7 +24,7 @@ compinit
 # the path in /etc/zprofile, which is sourced *after* .zshenv >:(.
 # Ensure path has no duplicate entries.
 typeset -U path
-homebrew_paths=($(cat ${HOME}/.homebrew_paths))
+homebrew_paths=($(cat ${HOME}/.homebrew_paths | sed -e "s|@BREW_PREFIX@|${BREW_PREFIX}|g"))
 path=($homebrew_paths[@] $path[@] ${HOME}/bin /Users/Shared/bin)
 
 # Homebrew automatically installs the following in /etc/paths.d:
@@ -133,25 +133,25 @@ alias unlocktrash="/usr/bin/sudo /usr/sbin/chown -R ${USER}:${GROUP} ~/.Trash/*"
 # Alias expansion causes issues with things like brew ls or git ls;
 # the only solution so far is to quote the ls e.g., git \ls or git "ls".
 # Might a function fix this?
-alias -g ls="/usr/local/bin/gls --classify --color=auto"
-alias -g l="/usr/local/bin/gls --classify --color=auto -l"
-alias -g ll="/usr/local/bin/gls --classify --color=auto -la"
+alias -g ls="${BREW_PREFIX}/bin/gls --classify --color=auto"
+alias -g l="${BREW_PREFIX}/bin/gls --classify --color=auto -l"
+alias -g ll="${BREW_PREFIX}/bin/gls --classify --color=auto -la"
 alias -g l@="/bin/ls -l@"
 alias -g ll@="/bin/ls -al@"
 alias man="/usr/local/bin/openman"
 alias -g rm="/bin/rm -i"
-alias locate="/usr/local/bin/glocate -d /var/db/locate.database"
+alias locate="${BREW_PREFIX}/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
 alias -g beep="/usr/bin/tput bel"
-alias -g grep="/usr/local/bin/ggrep --color=auto"
+alias -g grep="${BREW_PREFIX}/bin/ggrep --color=auto"
 
 # Set Terminal window and tab title
 alias winname='printf "\033]2;%s\a"'
 alias tabname='printf "\033]1;%s\a"'
 
 # Various ISPMS and other related scripts
-alias load_assessment-"/usr/local/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
-alias merge="/usr/local/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/results_reporting/merge.php"
+alias load_assessment-"${BREW_PREFIX}/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
+alias merge="${BREW_PREFIX}/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/results_reporting/merge.php"
 alias marking_form="/opt/X11/bin/xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISPMS/scripts/marking/marking-form.tcl"
 alias process_podcast="/usr/bin/python $TEACHING_SHARED/Tools/process_podcast/process_podcast.py"
 alias process_submissions="/usr/bin/python $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/process_submissions.py"
@@ -159,11 +159,11 @@ alias process_submissions="/usr/bin/python $TEACHING_SHARED/ISPMS/scripts/markin
 # Java
 alias rstudio="/bin/sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
 # Homebrew plantuml already does headless
-# alias plantuml="/usr/bin/java -Djava.awt.headless=true -jar /usr/local/bin/plantuml.jar"
+# alias plantuml="/usr/bin/java -Djava.awt.headless=true -jar ${BREW_PREFIX}/bin/plantuml.jar"
 
 # Others
-eval $(/usr/local/bin/thefuck --alias)
-alias saxon-b="/usr/bin/java -jar /usr/local/share/saxon-b/saxon9.jar"
+eval $(${BREW_PREFIX}/bin/thefuck --alias)
+alias saxon-b="/usr/bin/java -jar ${BREW_PREFIX}/share/saxon-b/saxon9.jar"
 
 
 #####################################################################
@@ -200,14 +200,14 @@ fi
 # Shell add-ons.
 
 # automatic completion suggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # use a slightly lighter shade of grey
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=246"
 
 # git prompt
-source /usr/local/opt/zsh-git-prompt/zshrc.sh
+source ${BREW_PREFIX}/opt/zsh-git-prompt/zshrc.sh
 # use Haskell executable (hacked into place - likely to break on update!)
-if [[ -e /usr/local/opt/zsh-git-prompt/src/.bin/gitstatus ]]
+if [[ -e ${BREW_PREFIX}/opt/zsh-git-prompt/src/.bin/gitstatus ]]
 then
     export GIT_PROMPT_EXECUTABLE="haskell"
 fi
@@ -221,10 +221,10 @@ export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]●%G$fg[black]${reset_color}%}"
 export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]✚%G$fg[black]${reset_color}%}"
 
 # vi mode
-# source /usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# source ${BREW_PREFIX}/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # suggest existing aliases
-source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
+source ${BREW_PREFIX}/share/zsh-you-should-use/you-should-use.plugin.zsh
 
 # syntax highlighting - MUST be loaded last!
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

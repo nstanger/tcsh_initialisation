@@ -2,7 +2,21 @@
 # Environment variables.
 # Note that TEXMF variables are defined in .zshrc because for some
 # reason they don't work here ("/Library/TeX/texbin/kpsexpand: line 117:
-# kpsewhich: command not found")
+# kpsewhich: command not found") despite using the absolute path.
+
+# Homebrew prefix
+# This should be the only time the absolute brew path path needs to be 
+# referenced. It has to be done this way because /opt/homebrew/bin
+# isn’t in the path by default, so a simple "brew --prefix" will fail
+# on Apple Silicon machines.
+#
+# IMPORTANT: This is only for Homebrew-related paths. Anything manually
+# installed in /usr/local should continue to use the explicit path.
+if [ "$(uname -m)" = "arm64" ]; then
+    BREW_PREFIX=$(/opt/homebrew/bin/brew --prefix);
+else
+    BREW_PREFIX=$(/usr/local/bin/brew --prefix);
+fi
 
 # directory paths
 export ALL_PAPERS_ROOT="${HOME}/Documents/Teaching"
@@ -12,31 +26,34 @@ export TEACHING_SHARED="${HOME}/Documents/Teaching/Shared"
 # tool paths
 export EDITOR="/Users/Shared/bin/vscd"
 export GIT_EDITOR="/Users/Shared/bin/vscd"
-export GRAPHVIZ_DOT="/usr/local/bin/dot"
+export GRAPHVIZ_DOT="${BREW_PREFIX}/bin/dot"
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-export R_GSCMD="/usr/local/bin/gs"
-export RSTUDIO_WHICH_R="/usr/local/bin/R"
+export R_GSCMD="${BREW_PREFIX}/bin/gs"
+export RSTUDIO_WHICH_R="${BREW_PREFIX}/bin/R"
 export TEXDOCVIEW_pdf="/Users/Shared/bin/preview %s"
-export TEXEDIT="/usr/local/bin/code -w -g %s:%d"
+export TEXEDIT="${BREW_PREFIX}/bin/code -w -g %s:%d"
 
 # compilation flags
-export ACLOCAL_FLAGS="-I/usr/local/share/aclocal"
-export CFLAGS="-I/usr/local/include -I/opt/X11/include"
-export CPPFLAGS="-I/usr/local/include -I/opt/X11/include"
-export CXXFLAGS="-I/usr/local/include -I/opt/X11/include"
-export LDFLAGS="-L/usr/local/lib -L/opt/X11/lib"
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+# Include both explicit /usr/local and Homebrew prefix, as they may
+# be different (but the Homebrew path should come first). It won't
+# hurt if it doubles up.
+export ACLOCAL_FLAGS="-I${BREW_PREFIX}/share/aclocal -I/usr/local/share/aclocal"
+export CFLAGS="-I${BREW_PREFIX}/local/include -I/usr/local/include -I/opt/X11/include"
+export CPPFLAGS="-I${BREW_PREFIX}/local/include -I/usr/local/include -I/opt/X11/include"
+export CXXFLAGS="-I${BREW_PREFIX}/local/include -I/usr/local/include -I/opt/X11/include"
+export LDFLAGS="-L${BREW_PREFIX}/lib -L/usr/local/lib -L/opt/X11/lib"
+export PKG_CONFIG_PATH="${BREW_PREFIX}/lib/pkgconfig:/usr/local/lib/pkgconfig"
 
 # library paths
 export CLASSPATH="${HOME}/Library/Java:."
-export PERL5LIB="/usr/local/lib/perl5"
-# export R_LIBS_SITE="/usr/local/lib/R/library"
+export PERL5LIB="${BREW_PREFIX}/lib/perl5"
+# export R_LIBS_SITE="${BREW_PREFIX}/lib/R/library"
 export TCLLIBPATH="/usr/lib"
 
 # misc configuration
 export ISPMS_HOST="sobmac0011.staff.uod.otago.ac.nz"
 export LESS="--no-init --raw-control-chars"
-export LESSOPEN="| /usr/local/bin/lesspipe.sh %s"
+export LESSOPEN="| ${BREW_PREFIX}/bin/lesspipe.sh %s"
 export PLOTICUS_CONFIG="${HOME}/.ploticus_config"
 export XSLT="saxon-b"
 export WORKON_HOME="${HOME}/.virtualenvs"
