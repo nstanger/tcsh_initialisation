@@ -6,8 +6,8 @@
 
 if [ $# -eq 0 ] ; then echo "Usage: pu2pdf <input file> [<output file>]" ; exit 1 ; fi
 
-PLANTUML="/usr/local/bin/plantuml"
-INKSCAPE="/usr/local/bin/inkscape"
+PLANTUML="${BREW_PREFIX}/bin/plantuml"
+INKSCAPE="${BREW_PREFIX}/bin/inkscape"
 
 inlocation=$(dirname "$1")
 inputfile=$(basename "$1")

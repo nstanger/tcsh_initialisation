@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PSQL=/usr/local/bin/psql
+PSQL=${BREW_PREFIX}/bin/psql
 
 PLIST="${HOME}/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
