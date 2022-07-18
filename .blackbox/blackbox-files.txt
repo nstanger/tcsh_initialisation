@@ -3,6 +3,7 @@ git/.gitconfig
 gui/environment
 net/.forward
 net/.netrc
-tcsh/shared/environment.shared
+net/.vpn
 sitecopy/.sitecopyrc
+tcsh/shared/environment.shared
 wget/.wgetrc
