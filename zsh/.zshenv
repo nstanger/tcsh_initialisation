@@ -13,9 +13,9 @@
 # IMPORTANT: This is only for Homebrew-related paths. Anything manually
 # installed in /usr/local should continue to use the explicit path.
 if [ "$(uname -m)" = "arm64" ]; then
-    BREW_PREFIX=$(/opt/homebrew/bin/brew --prefix);
+    export BREW_PREFIX=$(/opt/homebrew/bin/brew --prefix);
 else
-    BREW_PREFIX=$(/usr/local/bin/brew --prefix);
+    export BREW_PREFIX=$(/usr/local/bin/brew --prefix);
 fi
 
 # directory paths
