@@ -1,10 +1,10 @@
 #!/bin/bash
 
-BREW=/usr/local/bin/brew
-LOGGER=/usr/local/bin/glogger
-SLEEP=/usr/local/bin/gsleep
-GREP=/usr/local/bin/ggrep
-AWK=/usr/local/bin/gawk
+BREW=${BREW_PREFIX}/bin/brew
+LOGGER=${BREW_PREFIX}/bin/glogger
+SLEEP=${BREW_PREFIX}/bin/gsleep
+GREP=${BREW_PREFIX}/bin/ggrep
+AWK=${BREW_PREFIX}/bin/gawk
 PS=/bin/ps
 
 if [ -z $1 ]

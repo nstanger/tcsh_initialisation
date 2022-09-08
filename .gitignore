@@ -10,3 +10,4 @@ sitecopy/.sitecopyrc
 wget/.wgetrc
 automount/auto_shares
 !bin
+/net/.vpn

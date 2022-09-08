@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/local/bin/code --wait --new-window "$@"
+${BREW_PREFIX}/bin/code --wait --new-window "$@"
