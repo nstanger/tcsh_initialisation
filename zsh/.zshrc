@@ -89,7 +89,10 @@ setopt INTERACTIVE_COMMENTS
 #####################################################################
 # Python virtualenv wrapper. This appears to conflict with the "ls"
 # aliases below, so it has to happen first.
-source virtualenvwrapper.sh
+#source virtualenvwrapper.sh
+# workaround to hide "egrep: warning: egrep is obsolescent; using ggrep -E"
+# (warning in GNU egrep wrapper at /usr/local/opt/grep/bin/gegrep)
+source virtualenvwrapper.sh > /dev/null 2>&1
 
 
 #####################################################################
