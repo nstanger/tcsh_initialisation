@@ -23,12 +23,6 @@ include /usr/local/etc/logrotate.d
     size 500k
 }
 
-/Users/nstanger/Library/Logs/mount_remote.log {
-    rotate 7
-    daily
-    copytruncate
-}
-
 "/Users/nstanger/Library/Application Support/Google/DriveFS/migration/bns_config/user_default/sync_log.log" {
     rotate 6
     weekly
