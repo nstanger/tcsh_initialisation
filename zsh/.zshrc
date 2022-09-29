@@ -153,7 +153,7 @@ alias winname='printf "\033]2;%s\a"'
 alias tabname='printf "\033]1;%s\a"'
 
 # Various ISPMS and other related scripts
-alias load_assessment-"${BREW_PREFIX}/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
+alias load_assessment="${BREW_PREFIX}/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/load_assessment.php"
 alias merge="${BREW_PREFIX}/bin/php $TEACHING_SHARED/ISPMS/scripts/marking/results_reporting/merge.php"
 alias marking_form="/opt/X11/bin/xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISPMS/scripts/marking/marking-form.tcl"
 alias process_podcast="/usr/bin/python $TEACHING_SHARED/Tools/process_podcast/process_podcast.py"
