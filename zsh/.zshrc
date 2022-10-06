@@ -136,17 +136,17 @@ alias unlocktrash="/usr/bin/sudo /usr/sbin/chown -R ${USER}:${GROUP} ~/.Trash/*"
 # Alias expansion causes issues with things like brew ls or git ls;
 # the only solution so far is to quote the ls e.g., git \ls or git "ls".
 # Might a function fix this?
-alias -g ls="${BREW_PREFIX}/bin/gls --classify --color=auto"
-alias -g l="${BREW_PREFIX}/bin/gls --classify --color=auto -l"
-alias -g ll="${BREW_PREFIX}/bin/gls --classify --color=auto -la"
-alias -g l@="/bin/ls -l@"
-alias -g ll@="/bin/ls -al@"
+alias ls="${BREW_PREFIX}/bin/gls --classify --color=auto"
+alias l="${BREW_PREFIX}/bin/gls --classify --color=auto -l"
+alias ll="${BREW_PREFIX}/bin/gls --classify --color=auto -la"
+alias l@="/bin/ls -l@"
+alias ll@="/bin/ls -al@"
 alias man="/usr/local/bin/openman"
-alias -g rm="/bin/rm -i"
+alias rm="/bin/rm -i"
 alias locate="${BREW_PREFIX}/bin/glocate -d /var/db/locate.database"
 # alias smbclient="rlwrap /opt/local/bin/smbclient"
-alias -g beep="/usr/bin/tput bel"
-alias -g grep="${BREW_PREFIX}/bin/ggrep --color=auto"
+alias beep="/usr/bin/tput bel"
+alias grep="${BREW_PREFIX}/bin/ggrep --color=auto"
 
 # Set Terminal window and tab title
 alias winname='printf "\033]2;%s\a"'
