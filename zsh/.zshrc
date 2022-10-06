@@ -159,6 +159,14 @@ alias marking_form="/opt/X11/bin/xrdb < ~/.Xdefaults; tclsh $TEACHING_SHARED/ISP
 alias process_podcast="/usr/bin/python $TEACHING_SHARED/Tools/process_podcast/process_podcast.py"
 alias process_submissions="/usr/bin/python $TEACHING_SHARED/ISPMS/scripts/marking/load_assessment/process_submissions.py"
 
+# Python
+# Python 2 and the "python" executable disappear in more recent macOS, but some
+# things still look for "python", e.g., zsh-git-prompt.
+if [[ -z $(command -v python) ]]
+then
+    alias python="python3"
+fi
+
 # Java
 alias rstudio="/bin/sh -c 'unset JAVA_HOME; R CMD open -a /Applications/RStudio.app'"
 # Homebrew plantuml already does headless
