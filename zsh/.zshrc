@@ -85,6 +85,10 @@ bindkey "^[[B" down-line-or-search # down arrow
 # Allow comments in interactive shells
 setopt INTERACTIVE_COMMENTS
 
+# Miscellaneous
+# Force prompts to be re-evaluated <https://unix.stackexchange.com/a/40646>.
+setopt PROMPT_SUBST
+
 
 #####################################################################
 # Python virtualenv wrapper. This appears to conflict with the "ls"
@@ -184,14 +188,14 @@ alias saxon-b="/usr/bin/java -jar ${BREW_PREFIX}/share/saxon-b/saxon9.jar"
 # how to change the default prompt character.
 if [[ -v SSH_CLIENT ]]
 then
-    # PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%m:%3~%(!:#:>)%f%b '
-    PROMPT='%B%(?.%F{green}✔%f.%F{red}✘|%?%f) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    # f058 = nf-fa-check_circle
+    # f057 = nf-fa-times_circle
+    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 else
-    # PROMPT='%B%(?.%F{green}✔.%F{red}✘%?) %F{magenta}%3~%(!:#:>)%f%b '
-    PROMPT='%B%(?.%F{green}✔%f.%F{red}✘|%?%f) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 fi
-# $git_super_status supplied by zsh-git-prompt add-on.
-RPROMPT='$(git_super_status)'
+# Git status right prompt.
+RPROMPT='$(git status --porcelain=v2 --branch --show-stash -z 2>/dev/null | zsh-rust-git-prompt)'
 
 
 #####################################################################
@@ -219,22 +223,6 @@ fi
 source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # use a slightly lighter shade of grey
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=246"
-
-# git prompt
-source ${BREW_PREFIX}/opt/zsh-git-prompt/zshrc.sh
-# use Haskell executable (hacked into place - likely to break on update!)
-if [[ -e ${BREW_PREFIX}/opt/zsh-git-prompt/src/.bin/gitstatus ]]
-then
-    export GIT_PROMPT_EXECUTABLE="haskell"
-fi
-# set colors to more or less match git status config; defaults are OK for most
-# branch: black bold underline (note: don't reset_color at the end as it kills
-# all formatting)
-export ZSH_THEME_GIT_PROMPT_BRANCH="%{\e[$color[underline]m$fg_bold[black]%}"
-# staged (= added): green
-export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]●%G$fg[black]${reset_color}%}"
-# changed: red
-export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]✚%G$fg[black]${reset_color}%}"
 
 # vi mode
 # source ${BREW_PREFIX}/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
