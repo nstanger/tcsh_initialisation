@@ -8,7 +8,6 @@
 @BREW_PREFIX@/opt/grep/libexec/gnubin
 @BREW_PREFIX@/opt/icu4c/bin
 @BREW_PREFIX@/opt/icu4c/sbin
-@BREW_PREFIX@/opt/inetutils/libexec/gnubin
 @BREW_PREFIX@/opt/m4/bin
 @BREW_PREFIX@/opt/make/libexec/gnubin
 @BREW_PREFIX@/opt/mariadb@10.6/bin
