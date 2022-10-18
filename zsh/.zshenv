@@ -1,8 +1,5 @@
 #####################################################################
 # Environment variables.
-# Note that TEXMF variables are defined in .zshrc because for some
-# reason they don't work here ("/Library/TeX/texbin/kpsexpand: line 117:
-# kpsewhich: command not found") despite using the absolute path.
 
 # Homebrew prefix
 # This should be the only time the absolute brew path path needs to be 
@@ -17,6 +14,16 @@ if [ "$(uname -m)" = "arm64" ]; then
 else
     export BREW_PREFIX=$(/usr/local/bin/brew --prefix);
 fi
+
+# TEXMF paths
+export TEXMFCONFIG=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFCONFIG')
+export TEXMFDIST=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFDIST')
+export TEXMFHOME=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFHOME')
+export TEXMFLOCAL=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFLOCAL')
+export TEXMFMAIN=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFMAIN')
+export TEXMFSYSCONFIG=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFSYSCONFIG')
+export TEXMFSYSVAR=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFSYSVAR')
+export TEXMFVAR=$(/Library/TeX/texbin/kpsewhich -expand-var '$TEXMFVAR')
 
 # directory paths
 export ALL_PAPERS_ROOT="${HOME}/Documents/Teaching"

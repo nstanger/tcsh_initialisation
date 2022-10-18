@@ -97,15 +97,6 @@ setopt PROMPT_SUBST
 
 
 #####################################################################
-# Python virtualenv wrapper. This appears to conflict with the "ls"
-# aliases below, so it has to happen first.
-#source virtualenvwrapper.sh
-# workaround to hide "egrep: warning: egrep is obsolescent; using ggrep -E"
-# (warning in GNU egrep wrapper at /usr/local/opt/grep/bin/gegrep)
-source virtualenvwrapper.sh > /dev/null 2>&1
-
-
-#####################################################################
 # Key bindings.
 
 # backspace should be bound by default, being careful
@@ -120,20 +111,6 @@ bindkey "\e(" kill-word
 
 # control U should be bound by default, being careful
 bindkey "^U" backward-kill-line
-
-
-#####################################################################
-# Environment variables for TEXMF paths. For some reason these don't
-# work in .zshenv ("/Library/TeX/texbin/kpsexpand: line 117: kpsewhich:
-# command not found"). *shrug*
-export TEXMFCONFIG=$(/Library/TeX/texbin/kpsexpand '$TEXMFCONFIG')
-export TEXMFDIST=$(/Library/TeX/texbin/kpsexpand '$TEXMFDIST')
-export TEXMFHOME=$(/Library/TeX/texbin/kpsexpand '$TEXMFHOME')
-export TEXMFLOCAL=$(/Library/TeX/texbin/kpsexpand '$TEXMFLOCAL')
-export TEXMFMAIN=$(/Library/TeX/texbin/kpsexpand '$TEXMFMAIN')
-export TEXMFSYSCONFIG=$(/Library/TeX/texbin/kpsexpand '$TEXMFSYSCONFIG')
-export TEXMFSYSVAR=$(/Library/TeX/texbin/kpsexpand '$TEXMFSYSVAR')
-export TEXMFVAR=$(/Library/TeX/texbin/kpsexpand '$TEXMFVAR')
 
 
 #####################################################################
