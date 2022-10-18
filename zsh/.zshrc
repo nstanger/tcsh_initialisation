@@ -87,10 +87,6 @@ setopt HIST_VERIFY
 setopt CORRECT
 # setopt CORRECT_ALL
 
-# Search instead of just up and down arrow (cf. ^R)
-bindkey "^[[A" up-line-or-search # up arrow bindkey
-bindkey "^[[B" down-line-or-search # down arrow
-
 # Input/output
 # Allow comments in interactive shells
 setopt INTERACTIVE_COMMENTS
