@@ -12,7 +12,17 @@ zstyle ':completion:*' completer _complete _ignored _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 autoload -Uz compinit
-compinit
+# Only check once per day whether the cached .zcompdump file needs to be
+# regenerated (see <https://gist.github.com/ctechols/ca1035271ad134841284>).
+function {
+    setopt extended_glob local_options
+    if [[ ! -e ${HOME}/.zcompdump || -n ${HOME}/.zcompdump(#qNY1.mh+24) ]]; then
+        compinit
+        touch .zcompdump
+    else
+        compinit -C
+    fi
+}
 
 
 #####################################################################
