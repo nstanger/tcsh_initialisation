@@ -217,6 +217,18 @@ fi
 
 
 #####################################################################
+# Source any local scripts in ~/.zshrc.d
+if [[ -d "$HOME/.zshrc.d" ]]; then
+    # avoid error if the directory is empty (https://unix.stackexchange.com/a/504718)
+    setopt null_glob
+    for FILE in $HOME/.zshrc.d/*; do
+        source "$FILE"
+    done
+    unsetopt null_glob
+fi
+
+
+#####################################################################
 # Shell add-ons.
 
 # automatic completion suggestions
