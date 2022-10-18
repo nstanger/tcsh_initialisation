@@ -1,3 +1,6 @@
+# Shell functions to start and stop Otago VPN.
+# Based on <https://medium.com/@edgar/how-to-split-tunnel-vpn-traffic-on-mac-561da7353110>.
+
 function vpn-up() {
     echo "Starting the VPN with split tunneling …"
     sudo $BREW_PREFIX/bin/openconnect --authgroup=UO-VPN-STAFF --user=stani07p --passwd-on-stdin --background --script='~/bin/vpn' vpn.staff.otago.ac.nz < ~/.vpn > /dev/null 2>&1
