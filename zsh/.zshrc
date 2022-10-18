@@ -190,9 +190,9 @@ if [[ -v SSH_CLIENT ]]
 then
     # f058 = nf-fa-check_circle
     # f057 = nf-fa-times_circle
-    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{202}$(vpn-status)%f%F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 else
-    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{202}$(vpn-status)%f%F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
 fi
 # Git status right prompt.
 RPROMPT='$(git status --porcelain=v2 --branch --show-stash -z 2>/dev/null | zsh-rust-git-prompt)'

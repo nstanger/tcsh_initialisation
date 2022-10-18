@@ -10,3 +10,9 @@ function vpn-down() {
     echo "Shutting down the VPN …"
     sudo /usr/bin/pkill -2 openconnect > /dev/null 2>&1
 }
+
+function vpn-status() {
+    if [[ $(pgrep openconnect) ]]; then
+        echo "VPN "
+    fi
+}
