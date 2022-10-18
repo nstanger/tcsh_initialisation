@@ -199,6 +199,19 @@ RPROMPT='$(git status --porcelain=v2 --branch --show-stash -z 2>/dev/null | zsh-
 
 
 #####################################################################
+# Lazy-load the Python virtualenv wrapper so that it doesn't slow down
+# shell initialisation. "workon" is an obvious hook as it's the most
+# likely thing to want to do first (could alias other function as well,
+# I guess, but this will do for now).
+function workon() {
+    # source virtualenvwrapper.sh && workon
+    # workaround to hide "egrep: warning: egrep is obsolescent; using ggrep -E"
+    # (warning in GNU egrep wrapper at /usr/local/opt/grep/bin/gegrep)
+    source virtualenvwrapper.sh > /dev/null 2>&1 && workon
+}
+
+
+#####################################################################
 # Set up Perl to use "local::lib".
 eval "$(perl -I${HOME}/Library/perl5/lib/perl5 -Mlocal::lib=${HOME}/Library/perl5)"
 
