@@ -1,3 +1,21 @@
-#!/bin/bash
+#!/bin/sh
 
-sudo ${BREW_PREFIX}/bin/openconnect --authgroup=UO-VPN-STAFF --user=stani07p --passwd-on-stdin vpn.staff.otago.ac.nz < ~/.vpn
+# Script that starts vpn-slice with the hostnames/subnets that need to
+# be accessed via the VPN.
+
+vpn-slice \
+    139.80.0.0/16 \
+    10.0.0.0/8 \
+    10.96.160.0/24 \
+    concept.otago.ac.nz \
+    corpapp.otago.ac.nz \
+    evision.otago.ac.nz \
+    file-transfer.otago.ac.nz \
+    isdb.uod.otago.ac.nz \
+    ismdb.otago.ac.nz \
+    its-boxi.otago.ac.nz \
+    ourdrive.otago.ac.nz \
+    resourcebooker.otago.ac.nz \
+    sobmac0011.staff.uod.otago.ac.nz \
+    staff.desktop.otago.ac.nz \
+    tts-web-prod.otago.ac.nz

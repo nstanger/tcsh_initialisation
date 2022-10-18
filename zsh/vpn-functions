@@ -1,0 +1,9 @@
+function vpn-up() {
+    echo "Starting the VPN with split tunneling …"
+    sudo $BREW_PREFIX/bin/openconnect --authgroup=UO-VPN-STAFF --user=stani07p --passwd-on-stdin --background --script='~/bin/vpn' vpn.staff.otago.ac.nz < ~/.vpn > /dev/null 2>&1
+}
+
+function vpn-down() {
+    echo "Shutting down the VPN …"
+    sudo /usr/bin/pkill -2 openconnect > /dev/null 2>&1
+}
