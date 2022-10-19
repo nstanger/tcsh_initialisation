@@ -13,6 +13,9 @@ function vpn-down() {
 
 function vpn-status() {
     if [[ $(pgrep openconnect) ]]; then
-        echo "VPN "
+        echo "VPN"
     fi
 }
+
+# Append VPN status to the prompt.
+status_segment+=$'%F{202}$(vpn-status)%f '

@@ -169,14 +169,29 @@ alias saxon-b="/usr/bin/java -jar ${BREW_PREFIX}/share/saxon-b/saxon9.jar"
 # <https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/>
 # Also see comments of <https://unix.stackexchange.com/a/582702> regarding
 # how to change the default prompt character.
+# 
+# The prompt is divided into three segments: status, path, prompt. Each of
+# these can be dynamically updated by changing the value of the corresponding
+# variable. This is a handy way for scripts in .zshrc.d to add things like an
+# extra status value (e.g., VPN status). The downside is that it makes the
+# prompt string a bit harder to understand...
+
+# f058 = nf-fa-check_circle
+# f057 = nf-fa-times_circle
+status_segment=$'%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) '
+
+path_segment=$'%F{magenta}'
 if [[ -v SSH_CLIENT ]]
 then
-    # f058 = nf-fa-check_circle
-    # f057 = nf-fa-times_circle
-    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{202}$(vpn-status)%f%F{magenta}%m:%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
-else
-    PROMPT=$'%B%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) %F{202}$(vpn-status)%f%F{magenta}%6(~.%-2~/…/%3~.%~)%(!:#:>)%f%b '
+    # add the host name if this is a remote connection
+    path_segment+='%m:'
 fi
+path_segment+=$'%6(~.%-2~/…/%3~.%~)'
+
+prompt_segment=$'%(!:#:>)%f'
+
+PROMPT=$'%B${status_segment}${path_segment}${prompt_segment}%b '
+
 # Git status right prompt.
 RPROMPT='$(git status --porcelain=v2 --branch --show-stash -z 2>/dev/null | zsh-rust-git-prompt)'
 
