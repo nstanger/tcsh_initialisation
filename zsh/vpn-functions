@@ -9,13 +9,20 @@ function vpn-up() {
 function vpn-down() {
     echo "Shutting down the VPN …"
     sudo /usr/bin/pkill -2 openconnect > /dev/null 2>&1
+    while [[ $(pgrep openconnect) ]]; do
+        # Otherwise the function exits before the VPN goes down and the
+        # prompt status item doesn't get updated. Technical danger of an
+        # endless loop if the openconnect process doesn't terminate, but
+        # this can be resolved with ctrl-c and a manual `kill -9` of the
+        # openconnect process.
+    done
 }
 
 function vpn-status() {
     if [[ $(pgrep openconnect) ]]; then
-        echo "VPN"
+        echo '%K{202}VPN%k '
     fi
 }
 
 # Append VPN status to the prompt.
-status_segment+=$'%F{202}$(vpn-status)%f '
+status_addons+='vpn-status'
