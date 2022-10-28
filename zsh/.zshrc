@@ -231,7 +231,7 @@ function workon() {
     # source virtualenvwrapper.sh && workon
     # workaround to hide "egrep: warning: egrep is obsolescent; using ggrep -E"
     # (warning in GNU egrep wrapper at /usr/local/opt/grep/bin/gegrep)
-    source virtualenvwrapper.sh > /dev/null 2>&1 && workon
+    source virtualenvwrapper.sh > /dev/null 2>&1 && workon $@
 }
 
 
