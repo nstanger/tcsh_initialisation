@@ -269,18 +269,21 @@ function () {
 
 
 #####################################################################
-# Function to set up teaching work environment by paper.
-function set_working_environment() {
-    target_path="$ALL_PAPERS_ROOT/$1"
-    if [[ -e "$target_path" ]]
-    then
-        cd "$target_path"
-        return 0
-    else
-        echo "error: no such target $1"
-        return 1
-    fi
-}
+# Function to set working directory, defaulting the iTerm profile name
+# if no argument is provided. Takes advantage of cdpath and assumes
+# directory names contain no blanks.
+if [[ "$TERM_PROGRAM" = "iTerm.app" ]]
+then
+    function set_iterm_working_dir() {
+            if [[ -z "$1" ]]
+            then
+                target=$(echo "$ITERM_PROFILE" | tr -d ' ')
+            else
+                target=$(echo "$1" | tr -d ' ')
+            fi
+            cd "$target"
+    }
+fi
 
 
 #####################################################################
