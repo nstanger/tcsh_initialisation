@@ -269,6 +269,21 @@ function () {
 
 
 #####################################################################
+# Function to set up teaching work environment by paper.
+function set_working_environment() {
+    target_path="$ALL_PAPERS_ROOT/$1"
+    if [[ -e "$target_path" ]]
+    then
+        cd "$target_path"
+        return 0
+    else
+        echo "error: no such target $1"
+        return 1
+    fi
+}
+
+
+#####################################################################
 # Shell add-ons.
 
 # automatic completion suggestions
