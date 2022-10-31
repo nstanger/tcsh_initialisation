@@ -269,23 +269,27 @@ function () {
 
 
 #####################################################################
-# Function to set working directory. If no argument is provided,
-# default to either $ALL_PAPERS_ROOT (Terminal) or the profile
-# name (iTerm) Takes advantage of cdpath and assumes directory
-# names contain no blanks.
+# Function to set working directory. Only activates when you start a
+# new session in $HOME, to avoid stomping on restored sessions. If
+# no argument is provided, default to either $ALL_PAPERS_ROOT
+# (Terminal) or the profile name (iTerm) Takes advantage of cdpath
+# and assumes directory names contain no blanks.
 function set_working_dir() {
-    if [[ -z "$1" ]]
+    if [[ "$PWD" = "$HOME" ]]
     then
-        if [[ "$TERM_PROGRAM" = "iTerm.app" ]]
+        if [[ -z "$1" ]]
         then
-            target=$(echo "$ITERM_PROFILE" | tr -d ' ')
+            if [[ "$TERM_PROGRAM" = "iTerm.app" ]]
+            then
+                target=$(echo "$ITERM_PROFILE" | tr -d ' ')
+            else
+                target="$ALL_PAPERS_ROOT"
+            fi
         else
-            target="$ALL_PAPERS_ROOT"
+            target=$(echo "$1" | tr -d ' ')
         fi
-    else
-        target=$(echo "$1" | tr -d ' ')
+        cd "$target"
     fi
-    cd "$target"
 }
 
 
