@@ -269,21 +269,24 @@ function () {
 
 
 #####################################################################
-# Function to set working directory, defaulting the iTerm profile name
-# if no argument is provided. Takes advantage of cdpath and assumes
-# directory names contain no blanks.
-if [[ "$TERM_PROGRAM" = "iTerm.app" ]]
-then
-    function set_iterm_working_dir() {
-            if [[ -z "$1" ]]
-            then
-                target=$(echo "$ITERM_PROFILE" | tr -d ' ')
-            else
-                target=$(echo "$1" | tr -d ' ')
-            fi
-            cd "$target"
-    }
-fi
+# Function to set working directory. If no argument is provided,
+# default to either $ALL_PAPERS_ROOT (Terminal) or the profile
+# name (iTerm) Takes advantage of cdpath and assumes directory
+# names contain no blanks.
+function set_working_dir() {
+    if [[ -z "$1" ]]
+    then
+        if [[ "$TERM_PROGRAM" = "iTerm.app" ]]
+        then
+            target=$(echo "$ITERM_PROFILE" | tr -d ' ')
+        else
+            target="$ALL_PAPERS_ROOT"
+        fi
+    else
+        target=$(echo "$1" | tr -d ' ')
+    fi
+    cd "$target"
+}
 
 
 #####################################################################
