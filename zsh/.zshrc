@@ -18,7 +18,7 @@ function {
     setopt extended_glob local_options
     if [[ ! -e ${HOME}/.zcompdump || -n ${HOME}/.zcompdump(#qNY1.mh+24) ]]; then
         compinit
-        touch .zcompdump
+        touch ${HOME}/.zcompdump
     else
         compinit -C
     fi
