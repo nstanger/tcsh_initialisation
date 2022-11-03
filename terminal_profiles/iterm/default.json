@@ -39,19 +39,36 @@
   },
   "Triggers" : [
     {
-      "partial" : true,
+      "action" : "SetHostnameTrigger",
       "parameter" : "\\1",
       "regex" : "^(\\w+):.+\\$",
+      "partial" : true
+    },
+    {
+      "partial" : true,
+      "parameter" : "\\1@\\2",
+      "regex" : "^\\[([^@]+)@([^\\s]+)",
       "action" : "SetHostnameTrigger"
+    },
+    {
+      "action" : "SetDirectoryTrigger",
+      "parameter" : "\\1",
+      "regex" : "^\\w+:([^%]+)\\$",
+      "partial" : true
     },
     {
       "partial" : true,
       "parameter" : "\\1",
-      "regex" : "^\\w+:([^%]+)\\$",
+      "regex" : "^\\[[^@]+@[^ ]+ ([^]]+)\\]\\$",
       "action" : "SetDirectoryTrigger"
     },
     {
       "regex" : "^\\w+:.+\\$",
+      "action" : "iTermShellPromptTrigger",
+      "partial" : true
+    },
+    {
+      "regex" : "^\\[.+@.+ .+\\]\\$",
       "action" : "iTermShellPromptTrigger",
       "partial" : true
     }
