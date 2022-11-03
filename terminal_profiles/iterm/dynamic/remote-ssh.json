@@ -1,0 +1,60 @@
+{
+    "Profiles": [
+        {
+            "Name": "Remote SSH: General",
+            "Guid": "8e2cb10f-243c-58e6-a005-972c1213ec0d",
+            "Custom Command": "No",
+            "Use Custom Window Title": false,
+            "Background Color": {
+                "Red Component": 1,
+                "Color Space": "sRGB",
+                "Blue Component": 0.4,
+                "Alpha Component": 1,
+                "Green Component": 0.8
+            },
+            "Tags": ["SSH", "Remote"]
+        },
+        {
+            "Name": "nstanger@sobmac0011.staff.uod.otago.ac.nz",
+            "Guid": "nstanger@sobmac0011.staff.uod.otago.ac.nz",
+            "Dynamic Profile Parent Name": "Remote SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh nstanger@sobmac0011.staff.uod.otago.ac.nz",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nstanger@sobmac0011.staff.uod.otago.ac.nz",
+            "Bound Hosts": [
+                "sobmac0011"
+            ]
+        },
+        {
+            "Name": "nzougorg@nzoug.org",
+            "Guid": "nzougorg@nzoug.org",
+            "Dynamic Profile Parent Name": "Remote SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh nzougorg@nzoug.org",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nzougorg@nzoug.org",
+            "Keyboard Map": {
+                "0xf702-0x280000": {
+                    "Action": 10,
+                    "Text": "b"
+                },
+                "0xf703-0x280000": {
+                    "Action": 10,
+                    "Text": "f"
+                },
+                "0x7f-0x80000-0x33": {
+                    "Action": 10,
+                    "Text": ""
+                },
+                "0xf728-0x80000-0x75": {
+                    "Action": 10,
+                    "Text": "D"
+                }
+            },
+            "Bound Hosts": [
+                "nzoug"
+            ]
+        }
+    ]
+}

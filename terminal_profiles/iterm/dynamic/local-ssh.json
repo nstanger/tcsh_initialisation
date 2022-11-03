@@ -1,0 +1,102 @@
+{
+    "Profiles": [
+        {
+            "Name": "Local SSH: General",
+            "Guid": "bff54482-58db-57fa-a365-fe24e377d117",
+            "Custom Command": "No",
+            "Use Custom Window Title": false,
+            "Background Color": {
+                "Red Component": 0.80000000000000004,
+                "Color Space": "sRGB",
+                "Blue Component": 0.40000000000000002,
+                "Alpha Component": 1,
+                "Green Component": 1
+            },
+            "Tags": ["SSH", "Local"]
+        },
+        {
+            "Name": "nstanger@klow.stanger.org.nz",
+            "Guid": "nstanger@klow.stanger.org.nz",
+            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh -p 22422 nstanger@klow.stanger.org.nz",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nstanger@klow.stanger.org.nz",
+            "Keyboard Map": {
+                "0xf702-0x280000": {
+                    "Action": 10,
+                    "Text": "b"
+                },
+                "0xf703-0x280000": {
+                    "Action": 10,
+                    "Text": "f"
+                },
+                "0x7f-0x80000-0x33": {
+                    "Action": 10,
+                    "Text": ""
+                },
+                "0xf728-0x80000-0x75": {
+                    "Action": 10,
+                    "Text": "D"
+                }
+            },
+            "Bound Hosts": [
+                "klow"
+            ]
+        },
+        {
+            "Name": "nstanger@sprodj.stanger.org.nz",
+            "Guid": "nstanger@sprodj.stanger.org.nz",
+            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh -p 22423 nstanger@sprodj.stanger.org.nz",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nstanger@sprodj.stanger.org.nz",
+            "Keyboard Map": {
+                "0xf702-0x280000": {
+                    "Action": 10,
+                    "Text": "b"
+                },
+                "0xf703-0x280000": {
+                    "Action": 10,
+                    "Text": "f"
+                },
+                "0x7f-0x80000-0x33": {
+                    "Action": 10,
+                    "Text": ""
+                },
+                "0xf728-0x80000-0x75": {
+                    "Action": 10,
+                    "Text": "D"
+                }
+            },
+            "Bound Hosts": [
+                "sprodj"
+            ]
+        },
+        {
+            "Name": "nstanger@poldavia.stanger.org.nz",
+            "Guid": "nstanger@poldavia.stanger.org.nz",
+            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh nstanger@poldavia.stanger.org.nz",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nstanger@poldavia.stanger.org.nz",
+            "Bound Hosts": [
+                "poldavia"
+            ]
+        },
+        {
+            "Name": "nstanger@syldavia.stanger.org.nz",
+            "Guid": "nstanger@syldavia.stanger.org.nz",
+            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh nstanger@syldavia.stanger.org.nz",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nstanger@syldavia.stanger.org.nz",
+            "Bound Hosts": [
+                "syldavia"
+            ]
+        }
+    ]
+}
