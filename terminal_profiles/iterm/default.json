@@ -1,6 +1,12 @@
 {
   "Badge Text" : "",
-  "ASCII Ligatures" : false,
+  "Ansi 5 Color" : {
+    "Red Component" : 0.69803921570000005,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.69803921570000005,
+    "Alpha Component" : 1,
+    "Green Component" : 0
+  },
   "Working Directory" : "\/Users\/nstanger",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -41,34 +47,23 @@
     {
       "action" : "SetHostnameTrigger",
       "parameter" : "\\1",
-      "regex" : "^(\\w+):.+\\$",
+      "regex" : "([-.\\w\\d]+)[: ]",
       "partial" : true
     },
     {
-      "partial" : true,
+      "action" : "SetHostnameTrigger",
       "parameter" : "\\1@\\2",
-      "regex" : "^\\[([^@]+)@([^\\s]+)",
-      "action" : "SetHostnameTrigger"
+      "regex" : "([:punct:\\w\\d]+)@([-.\\w\\d]+)[: ]",
+      "partial" : true
     },
     {
       "action" : "SetDirectoryTrigger",
       "parameter" : "\\1",
-      "regex" : "^\\w+:([^%]+)\\$",
+      "regex" : "[: ]\\[?([^$#%\\]]+)",
       "partial" : true
     },
     {
-      "partial" : true,
-      "parameter" : "\\1",
-      "regex" : "^\\[[^@]+@[^ ]+ ([^]]+)\\]\\$",
-      "action" : "SetDirectoryTrigger"
-    },
-    {
-      "regex" : "^\\w+:.+\\$",
-      "action" : "iTermShellPromptTrigger",
-      "partial" : true
-    },
-    {
-      "regex" : "^\\[.+@.+ .+\\]\\$",
+      "regex" : "^.+[$#] ?$",
       "action" : "iTermShellPromptTrigger",
       "partial" : true
     }
@@ -112,7 +107,8 @@
               "Blue Component" : 0.25,
               "Alpha Component" : 1,
               "Green Component" : 0.25
-            }
+            },
+            "base: priority" : 5
           },
           "layout advanced configuration dictionary value" : {
             "remove empty components" : false,
@@ -181,9 +177,9 @@
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
-            "algorithm" : 0,
             "remove empty components" : false,
-            "auto-rainbow style" : 0
+            "auto-rainbow style" : 0,
+            "algorithm" : 0
           }
         }
       },
@@ -528,12 +524,6 @@
   "Use Tab Color" : false,
   "Visual Bell" : true,
   "Custom Directory" : "No",
-  "Ansi 5 Color" : {
-    "Red Component" : 0.69803921570000005,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.69803921570000005,
-    "Alpha Component" : 1,
-    "Green Component" : 0
-  },
-  "Thin Strokes" : 1
+  "Thin Strokes" : 1,
+  "ASCII Ligatures" : false
 }
