@@ -2,6 +2,7 @@
 
 # Script that starts vpn-slice with the hostnames/subnets that need to
 # be accessed via the VPN.
+# Based on <https://medium.com/@edgar/how-to-split-tunnel-vpn-traffic-on-mac-561da7353110>.
 
 vpn-slice \
     139.80.0.0/16 \
