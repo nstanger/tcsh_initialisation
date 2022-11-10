@@ -1,5 +1,5 @@
 #####################################################################
-# Completions.
+# Completions and styles.
 
 # Automatic rehash
 zstyle ':completion:*' rehash true
@@ -23,6 +23,13 @@ function {
         compinit -C
     fi
 }
+
+# Use bash style word boundaries. The normal solution of:
+#   autoload -U select-word-style
+#   select-word-style bash
+# doesn't seem to work, and neither does manually doing the same things
+# that `select-word-style`` bash does? Let's just stomp WORDCHARS instead.
+export WORDCHARS=
 
 
 #####################################################################
