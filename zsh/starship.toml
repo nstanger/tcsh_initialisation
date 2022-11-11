@@ -1,0 +1,99 @@
+format = """
+ $status\
+$sudo\
+$python\
+$hostname\
+$directory\
+$cmd_duration\
+$character
+"""
+
+right_format = """
+$git_branch\
+$git_commit\
+$git_state\
+$git_status
+"""
+
+continuation_prompt = "[ ┣━](bold green) "
+# U+2523 BOX DRAWINGS HEAVY VERTICAL AND RIGHT plus
+# U+2501 BOX DRAWINGS HEAVY HORIZONTAL
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+[status]
+disabled = false
+format = "[$symbol]($style) "
+symbol = " $status"               # Nerd Font f057 nf-fa-times_circle
+success_symbol = "[](bold green)" # Nerd Font f058 nf-fa-check_circle
+# success_symbol = "[-](bold green)" # Nerd Font f058 nf-fa-check_circle
+
+[sudo]
+disabled = false
+format = "[$symbol]($style)"
+symbol = "ﲍ " # Nerd Font fc8d nf-mdi-alarm_light
+style = "bold bright-red"
+
+[python]
+symbol = " " # Nerd Font f820 nf-mdi-language_python_text
+format = '[$symbol($version )(\($virtualenv\) )]($style)'
+
+[hostname]
+style = "bold blue"
+format = "[$ssh_symbol$hostname]($style) "
+ssh_symbol = " " # Nerd Font eb01 nf-cod-globe
+
+[directory]
+style = "bold purple"
+format = "[$path( $read_only)]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+# home_symbol = "~"
+home_symbol = "" # Nerd Font f7db nf-mdi-home
+read_only = ""   # Nerd Font f023 nf-fa-lock
+
+[directory.substitutions]
+"Desktop" = " "  # Nerd Font f108 nf-fa-desktop
+"Documents" = "" # Nerd Font f718 nf-mdi-file_document
+"Downloads" = "" # Nerd Font f6d9 nf-mdi-download
+"Dropbox" = ""   # Nerd Font e707 nf-dev-dropbox
+"Music" = "♪"     # U+266A EIGHTH NOTE
+"Movies" = " "   # Nerd Font f008 nf-fa-film
+"Pictures" = " " # Nerd Font f03e nf-fa-picture_o
+"Volumes" = ""   # Nerd Font f6b7 nf-mdi-database
+# Keep in mind that the order matters. For example:
+# "Important Documents" = "  "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important  " = "  "
+
+[cmd_duration]
+format = "took [$duration]($style) "
+
+[character]
+format = "$symbol "
+
+[git_branch]
+symbol = "" # Nerd Font e725 nf-dev-git_branch
+style = "underline black bold"
+format = '$symbol [$branch]($style)'
+
+[git_commit]
+format = '[\($hash$tag\)]($style)'
+style = "bold bright-red"
+tag_disabled = false
+
+[git_status]
+format = '( $ahead_behind)( |( $stashed)( $staged)( $renamed)( $modified)( $deleted)( $conflicted)( $untracked))'
+ahead = "$count"  # Nerd Font f55c nf-mdi-arrow_up
+behind = "$count" # Nerd Font f544 nf-mdi-arrow_down
+diverged = "⇅$ahead_count|$behind_count" # U+21C5 UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW
+stashed = "[⚑$count](blue)"    # U+2691 BLACK FLAG
+staged = "[+$count](blue)"     # U+002B PLUS SIGN
+renamed = "[~$count](blue)"    # U+007E TILDE
+modified = "[∆$count](red)"    # U+2206 INCREMENT
+deleted = "[−$count](red)"     # U+2212 MINUS SIGN
+conflicted = "[‼$count](red)"  # U+203C DOUBLE EXCLAMATION MARK
+untracked = "[$count](white)" # Nerd Font f142 nf-fa-ellipsis_v
+#up_to_date = "[](green)"      # Nerd Font f00c nf-fa-check

@@ -185,48 +185,50 @@ alias saxon-b="/usr/bin/java -jar ${BREW_PREFIX}/share/saxon-b/saxon9.jar"
 # (e.g., VPN status). The downside is that it makes the prompt string
 # harder to understand...
 
-status_addons=''
+# status_addons=''
 
-function status_segment() {
-    # f058 = Nerd Font nf-fa-check_circle
-    # f057 = Nerd Font nf-fa-times_circle
-    segment='%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) '
-    for s in $=status_addons; do
-        segment+="$(eval $s)"
-    done
-    echo "$segment"
-}
+# function status_segment() {
+#     # f058 = Nerd Font nf-fa-check_circle
+#     # f057 = Nerd Font nf-fa-times_circle
+#     segment='%(?.%F{green}\uf058%f.%F{red}\uf057 %?%f) '
+#     for s in $=status_addons; do
+#         segment+="$(eval $s)"
+#     done
+#     echo "$segment"
+# }
 
-path_addons=''
+# path_addons=''
 
-function path_segment() {
-    segment='%F{magenta}'
-    if [[ -v SSH_CLIENT ]]
-    then
-        # add the host name if this is a remote connection
-        segment+='%m:'
-    fi
-    segment+='%6(~.%-2~/…/%3~.%~)'
-    for s in $=path_addons; do
-        segment+="$(eval $s)"
-    done
-    echo "$segment"
-}
+# function path_segment() {
+#     segment='%F{magenta}'
+#     if [[ -v SSH_CLIENT ]]
+#     then
+#         # add the host name if this is a remote connection
+#         segment+='%m:'
+#     fi
+#     segment+='%6(~.%-2~/…/%3~.%~)'
+#     for s in $=path_addons; do
+#         segment+="$(eval $s)"
+#     done
+#     echo "$segment"
+# }
 
-prompt_addons=''
+# prompt_addons=''
 
-function prompt_segment() {
-    segment='%(!:#:>)%f'
-    for s in $=prompt_addons; do
-        segment+="$(eval $s)"
-    done
-    echo "$segment"
-}
+# function prompt_segment() {
+#     segment='%(!:#:>)%f'
+#     for s in $=prompt_addons; do
+#         segment+="$(eval $s)"
+#     done
+#     echo "$segment"
+# }
 
-PROMPT='%B$(status_segment)$(path_segment)$(prompt_segment)%b '
+# PROMPT='%B$(status_segment)$(path_segment)$(prompt_segment)%b '
 
 # Git status right prompt.
-RPROMPT='$(git status --porcelain=v2 --branch --show-stash -z 2>/dev/null | zsh-rust-git-prompt)'
+# RPROMPT='$(git status --porcelain=v2 --branch --show-stash -z 2>/dev/null | zsh-rust-git-prompt)'
+
+eval "$(starship init zsh)"
 
 
 #####################################################################
