@@ -3,7 +3,6 @@
         {
             "Name": "Remote SSH: General",
             "Guid": "8e2cb10f-243c-58e6-a005-972c1213ec0d",
-            "Custom Command": "No",
             "Use Custom Window Title": false,
             "Background Color": {
                 "Red Component": 1,

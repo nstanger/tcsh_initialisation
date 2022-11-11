@@ -1,13 +1,19 @@
-# iTerm Shell integration
+# iTerm configuration
 
-Typical prompts:
+## Profiles
+
+The default profile in `default.json` uses the Homebrew installed version of `zsh`, but note that this is in different locations on Intel (`/usr/bin`) and Apple Silicon (`/opt/homebrew`) machines. The path will need to adjusted appropriately in the deployed profile.
+
+## Shell integration
+
+Typical prompts for machines without native shell integration installed:
 
 1. `klow:~$␣`
 2. `nzougorg@nzoug.org␣[~]#␣`
 3. `[stani07p@rtis-infos-db-01␣~]$␣`
 
 
-## Report user & host 
+### Report user & host 
 
 To match 1 above:
 
@@ -21,7 +27,7 @@ To match 2 & 3 above:
 ([:punct:\w\d]+)@([-.\w\d]+)[: ]
 ```
 
-## Report directory
+### Report directory
 
 To match all of 1–3 above:
 
@@ -29,7 +35,7 @@ To match all of 1–3 above:
 [: ]\[?([^$#%\]]+)
 ```
 
-## Prompt detected
+### Prompt detected
 
 To match all of 1–3 above:
 

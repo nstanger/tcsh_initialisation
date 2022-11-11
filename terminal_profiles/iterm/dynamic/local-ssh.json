@@ -3,7 +3,6 @@
         {
             "Name": "Local SSH: General",
             "Guid": "bff54482-58db-57fa-a365-fe24e377d117",
-            "Custom Command": "No",
             "Use Custom Window Title": false,
             "Background Color": {
                 "Red Component": 0.80000000000000004,
