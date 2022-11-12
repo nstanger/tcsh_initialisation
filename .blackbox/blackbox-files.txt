@@ -8,5 +8,6 @@ sitecopy/.sitecopyrc
 tcsh/shared/environment.shared
 vpn/otago.ac.nz.auth
 vpn/otago.ac.nz.vpn
+vpn/stanger.org.nz.auth
 vpn/stanger.org.nz.ovpn
 wget/.wgetrc
