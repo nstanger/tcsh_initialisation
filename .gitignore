@@ -10,7 +10,6 @@ sitecopy/.sitecopyrc
 wget/.wgetrc
 automount/auto_shares
 !bin
-/net/.vpn
 /vpn/otago.ac.nz.vpn
 /vpn/stanger.org.nz.ovpn
 /vpn/otago.ac.nz.auth

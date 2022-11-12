@@ -3,7 +3,6 @@ git/.gitconfig
 gui/environment
 net/.forward
 net/.netrc
-net/.vpn
 sitecopy/.sitecopyrc
 tcsh/shared/environment.shared
 vpn/otago.ac.nz.auth
