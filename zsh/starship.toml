@@ -41,7 +41,7 @@ style = "bold bright-red"
 symbol = "旅" # Nerd Font f983 nf-mdi-security_network
 format = "[$symbol]($style)"
 style = "bold fg:202"
-when = 'pgrep openconnect\|openvpn > /dev/null'
+when = 'pgrep openconnect\|openvpn'
 
 [python]
 symbol = " " # Nerd Font f820 nf-mdi-language_python_text
