@@ -1,6 +1,7 @@
 format = """
  $status\
 $sudo\
+${custom.vpn}\
 $python\
 $hostname\
 $directory\
@@ -34,6 +35,13 @@ disabled = false
 format = "[$symbol]($style)"
 symbol = "ﲍ " # Nerd Font fc8d nf-mdi-alarm_light
 style = "bold bright-red"
+
+[custom.vpn]
+# command = "echo -n '旅 '"
+symbol = "旅" # Nerd Font f983 nf-mdi-security_network
+format = "[$symbol]($style)"
+style = "bold fg:202"
+when = 'pgrep openconnect\|openvpn > /dev/null'
 
 [python]
 symbol = " " # Nerd Font f820 nf-mdi-language_python_text

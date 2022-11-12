@@ -1,6 +1,6 @@
 # Shell functions to start and stop VPNs.
 
-declare -Ax vpn_execs vpn_args vpns_running
+declare -Ax vpn_execs vpn_args
 
 vpn_execs=( \
     [home]="$BREW_PREFIX/sbin/openvpn" \
@@ -9,10 +9,8 @@ vpn_execs=( \
 
 vpn_args=( \
     [home]="--config ~/.vpn/stanger.org.nz.ovpn" \
-    [work]="--authgroup=UO-VPN-STAFF --user=stani07p --passwd-on-stdin --background --script='~/bin/vpn' vpn.staff.otago.ac.nz < ~/.vpn/otago.ac.nz.auth > /dev/null 2>&1" \
+    [work]="--config ~/.vpn/otago.ac.nz.vpn vpn.staff.otago.ac.nz < ~/.vpn/otago.ac.nz.auth > /dev/null 2>&1" \
 )
-
-vpns_running=()
 
 function vpn-up() {
     local vpns=($@)
@@ -27,10 +25,6 @@ function vpn-up() {
             else
                 printf '%s: starting "%s" VPN\n' $funcstack[1] $v
                 eval sudo $vpn_execs[$v] $vpn_args[$v]
-                # Use an associative array to track processes, as it's a
-                # lot easier to add and remove items based on program name
-                # than it would be with a simple array.
-                [[ $(pgrep $program) ]] && vpns_running[$v]=1
             fi
         fi
     done
@@ -38,36 +32,24 @@ function vpn-up() {
 
 function vpn-down() {
     local vpns=($@)
-    [[ $#vpns -eq 0 ]] && vpns=${(k)vpns_running}
+    [[ $#vpns -eq 0 ]] && vpns=${(k)vpn_execs}
     for v in ${=vpns}; do
         if [[ -z "$vpn_execs[$v]" ]]; then
             printf '%s: warning: ignoring unknown "%s" VPN\n' $funcstack[1] $v
         else
             local program=$(basename $vpn_execs[$v])
-            # It doesn't whether the vpn is running or not. This provides
-            # a handy way to reset the process tracking if it gets out of
-            # whack: just keep going `vpn-down` until the status prompt
-            # item disappears.
-            printf '%s: shutting down "%s" VPN\n' $funcstack[1] $v
-            sudo pkill -2 $program > /dev/null 2>&1
-            while [[ $(pgrep "$program") ]]; do
-                # Loop until the program is definitely terminated, otherwise
-                # the process tracking may get out of sync and the prompt 
-                # status item won't get updated. Technical danger of an
-                # endless loop if the vpn process never terminates, but
-                # this can be resolved with ctrl-c and a manual `kill -9`
-                # of the corresponding process.
-            done
-            unset "vpns_running[$v]"
+            if [[ $(pgrep "$program") ]]; then
+                printf '%s: shutting down "%s" VPN\n' $funcstack[1] $v
+                sudo pkill -2 $program > /dev/null 2>&1
+                while [[ $(pgrep "$program") ]]; do
+                    # Loop until the program is definitely terminated, otherwise
+                    # the process tracking may get out of sync and the prompt 
+                    # status item won't get updated. Technical danger of an
+                    # endless loop if the vpn process never terminates, but
+                    # this can be resolved with ctrl-c and a manual `kill -9`
+                    # of the corresponding process.
+                done
+            fi
         fi
     done
 }
-
-function vpn-status() {
-    # This can get out of sync, but it's way faster than the original
-    # approach of pgrepping for the processes.
-    [[ $#vpns_running -gt 0 ]] && echo '%K{202}VPN%k '
-}
-
-# Append VPN status to the prompt.
-status_addons+='vpn-status'
