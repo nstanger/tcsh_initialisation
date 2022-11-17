@@ -1,7 +1,7 @@
 {
     "Profiles": [
         {
-            "Name": "Local SSH: General",
+            "Name": "Home SSH: General",
             "Guid": "bff54482-58db-57fa-a365-fe24e377d117",
             "Use Custom Window Title": false,
             "Background Color": {
@@ -11,12 +11,12 @@
                 "Alpha Component": 1,
                 "Green Component": 1
             },
-            "Tags": ["SSH", "Local"]
+            "Tags": ["SSH", "Home"]
         },
         {
             "Name": "nstanger@klow.stanger.org.nz",
             "Guid": "nstanger@klow.stanger.org.nz",
-            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Dynamic Profile Parent Name": "Home SSH: General",
             "Custom Command": "Yes",
             "Command": "/usr/bin/ssh -p 22422 nstanger@klow.stanger.org.nz",
             "Use Custom Window Title": true,
@@ -46,7 +46,7 @@
         {
             "Name": "nstanger@sprodj.stanger.org.nz",
             "Guid": "nstanger@sprodj.stanger.org.nz",
-            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Dynamic Profile Parent Name": "Home SSH: General",
             "Custom Command": "Yes",
             "Command": "/usr/bin/ssh -p 22423 nstanger@sprodj.stanger.org.nz",
             "Use Custom Window Title": true,
@@ -76,7 +76,7 @@
         {
             "Name": "nstanger@poldavia.stanger.org.nz",
             "Guid": "nstanger@poldavia.stanger.org.nz",
-            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Dynamic Profile Parent Name": "Home SSH: General",
             "Custom Command": "Yes",
             "Command": "/usr/bin/ssh nstanger@poldavia.stanger.org.nz",
             "Use Custom Window Title": true,
@@ -88,7 +88,7 @@
         {
             "Name": "nstanger@syldavia.stanger.org.nz",
             "Guid": "nstanger@syldavia.stanger.org.nz",
-            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Dynamic Profile Parent Name": "Home SSH: General",
             "Custom Command": "Yes",
             "Command": "/usr/bin/ssh nstanger@syldavia.stanger.org.nz",
             "Use Custom Window Title": true,

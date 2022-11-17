@@ -1,7 +1,7 @@
 {
     "Profiles": [
         {
-            "Name": "Remote SSH: General",
+            "Name": "Work SSH: General",
             "Guid": "8e2cb10f-243c-58e6-a005-972c1213ec0d",
             "Use Custom Window Title": false,
             "Background Color": {
@@ -11,12 +11,12 @@
                 "Alpha Component": 1,
                 "Green Component": 0.8
             },
-            "Tags": ["SSH", "Remote"]
+            "Tags": ["SSH", "Work"]
         },
         {
             "Name": "nstanger@sobmac0011.staff.uod.otago.ac.nz",
             "Guid": "nstanger@sobmac0011.staff.uod.otago.ac.nz",
-            "Dynamic Profile Parent Name": "Remote SSH: General",
+            "Dynamic Profile Parent Name": "Work SSH: General",
             "Custom Command": "Yes",
             "Command": "/usr/bin/ssh nstanger@sobmac0011.staff.uod.otago.ac.nz",
             "Use Custom Window Title": true,
@@ -28,7 +28,7 @@
         {
             "Name": "stani07p@isdb.uod.otago.ac.nz",
             "Guid": "stani07p@isdb.uod.otago.ac.nz",
-            "Dynamic Profile Parent Name": "Local SSH: General",
+            "Dynamic Profile Parent Name": "Work SSH: General",
             "Custom Command": "Yes",
             "Command": "/usr/bin/ssh stani07p@isdb.uod.otago.ac.nz",
             "Use Custom Window Title": true,
@@ -53,36 +53,6 @@
             },
             "Bound Hosts": [
                 "rtis-infos-db-01"
-            ]
-        },
-        {
-            "Name": "nzougorg@nzoug.org",
-            "Guid": "nzougorg@nzoug.org",
-            "Dynamic Profile Parent Name": "Remote SSH: General",
-            "Custom Command": "Yes",
-            "Command": "/usr/bin/ssh nzougorg@nzoug.org",
-            "Use Custom Window Title": true,
-            "Custom Window Title": "nzougorg@nzoug.org",
-            "Keyboard Map": {
-                "0xf702-0x280000": {
-                    "Action": 10,
-                    "Text": "b"
-                },
-                "0xf703-0x280000": {
-                    "Action": 10,
-                    "Text": "f"
-                },
-                "0x7f-0x80000-0x33": {
-                    "Action": 10,
-                    "Text": ""
-                },
-                "0xf728-0x80000-0x75": {
-                    "Action": 10,
-                    "Text": "D"
-                }
-            },
-            "Bound Hosts": [
-                "nzoug.org"
             ]
         }
     ]
