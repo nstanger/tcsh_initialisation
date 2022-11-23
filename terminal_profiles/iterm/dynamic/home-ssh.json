@@ -86,6 +86,18 @@
             ]
         },
         {
+            "Name": "nstanger@sondonesia.stanger.org.nz",
+            "Guid": "nstanger@sondonesia.stanger.org.nz",
+            "Dynamic Profile Parent Name": "Home SSH: General",
+            "Custom Command": "Yes",
+            "Command": "/usr/bin/ssh nstanger@sondonesia.stanger.org.nz",
+            "Use Custom Window Title": true,
+            "Custom Window Title": "nstanger@sondonesia.stanger.org.nz",
+            "Bound Hosts": [
+                "sondonesia"
+            ]
+        },
+        {
             "Name": "nstanger@syldavia.stanger.org.nz",
             "Guid": "nstanger@syldavia.stanger.org.nz",
             "Dynamic Profile Parent Name": "Home SSH: General",
