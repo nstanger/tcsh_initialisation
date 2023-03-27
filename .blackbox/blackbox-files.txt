@@ -10,3 +10,4 @@ vpn/otago.ac.nz.vpn
 vpn/stanger.org.nz.auth
 vpn/stanger.org.nz.ovpn
 wget/.wgetrc
+zsh/.zshenv
