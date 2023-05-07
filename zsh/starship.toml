@@ -33,18 +33,18 @@ success_symbol = "[](bold green)" # Nerd Font f058 nf-fa-check_circle
 [sudo]
 disabled = false
 format = "[$symbol]($style)"
-symbol = "ﲍ " # Nerd Font fc8d nf-mdi-alarm_light
+symbol = "󰞏 " # Nerd Font f078f nf-md-alarm_light
 style = "bold bright-red"
 
 [custom.vpn]
 # command = "echo -n '旅 '"
-symbol = "旅" # Nerd Font f983 nf-mdi-security_network
+symbol = "󰒄" # Nerd Font f0484 nf-md-security_network
 format = "[$symbol]($style)"
 style = "bold fg:202"
 when = 'pgrep openconnect\|openvpn'
 
 [python]
-symbol = " " # Nerd Font f820 nf-mdi-language_python_text
+symbol = "󰌠 " # Nerd Font f0320 nf-md-language_python
 format = '[$symbol($version )(\($virtualenv\) )]($style)'
 
 [hostname]
@@ -59,23 +59,23 @@ truncation_length = 3
 truncate_to_repo = false
 truncation_symbol = "…/"
 # home_symbol = "~"
-home_symbol = "" # Nerd Font f7db nf-mdi-home
+home_symbol = "󰋜" # Nerd Font f02dc nf-md-home
 read_only = ""   # Nerd Font f023 nf-fa-lock
 
 [directory.substitutions]
 "Desktop" = " "  # Nerd Font f108 nf-fa-desktop
-"Documents" = "" # Nerd Font f718 nf-mdi-file_document
-"Downloads" = "" # Nerd Font f6d9 nf-mdi-download
+"Documents" = "󰈙" # Nerd Font f0219 nf-md-file_document
+"Downloads" = "󰇚" # Nerd Font f01da nf-md-download
 "Dropbox" = ""   # Nerd Font e707 nf-dev-dropbox
 "Music" = "♪"     # U+266A EIGHTH NOTE
 "Movies" = " "   # Nerd Font f008 nf-fa-film
 "Pictures" = " " # Nerd Font f03e nf-fa-picture_o
-"Volumes" = ""   # Nerd Font f6b7 nf-mdi-database
+"Volumes" = "󰆼"   # Nerd Font f01bc nf-md-database
 # Keep in mind that the order matters. For example:
-# "Important Documents" = "  "
+# "Important Documents" = " 󰈙 "
 # will not be replaced, because "Documents" was already substituted before.
 # So either put "Important Documents" before "Documents" or use the substituted version:
-# "Important  " = "  "
+# "Important 󰈙 " = " 󰈙 "
 
 [cmd_duration]
 format = "took [$duration]($style) "
@@ -95,8 +95,8 @@ tag_disabled = false
 
 [git_status]
 format = '( $ahead_behind)( |( $stashed)( $staged)( $renamed)( $modified)( $deleted)( $conflicted)( $untracked))'
-ahead = "$count"  # Nerd Font f55c nf-mdi-arrow_up
-behind = "$count" # Nerd Font f544 nf-mdi-arrow_down
+ahead = "󰁝$count"  # Nerd Font f005d nf-md-arrow_up
+behind = "󰁅$count" # Nerd Font f0045 nf-md-arrow_down
 diverged = "⇅$ahead_count|$behind_count" # U+21C5 UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW
 stashed = "[⚑$count](blue)"    # U+2691 BLACK FLAG
 staged = "[+$count](blue)"     # U+002B PLUS SIGN

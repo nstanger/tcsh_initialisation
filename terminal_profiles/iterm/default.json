@@ -39,15 +39,15 @@
   },
   "Triggers" : [
     {
-      "disabled" : false,
       "action" : "SetHostnameTrigger",
+      "disabled" : false,
       "parameter" : "\\1",
       "regex" : "([-.\\w\\d]+)[: ]",
       "partial" : true
     },
     {
-      "disabled" : false,
       "action" : "SetHostnameTrigger",
+      "disabled" : false,
       "parameter" : "\\1@\\2",
       "regex" : "([:punct:\\w\\d]+)@([-.\\w\\d]+)[: ]",
       "partial" : true
@@ -92,11 +92,6 @@
         "class" : "iTermStatusBarJobComponent",
         "configuration" : {
           "knobs" : {
-            "maxwidth" : 1.7976931348623157e+308,
-            "base: priority" : 5,
-            "minwidth" : 0,
-            "base: compression resistance" : 1,
-            "base: priority" : 5,
             "shared text color" : {
               "Red Component" : 0.5,
               "Color Space" : "sRGB",
@@ -104,7 +99,9 @@
               "Alpha Component" : 1,
               "Green Component" : 0.25
             },
+            "base: priority" : 5,
             "minwidth" : 0,
+            "base: compression resistance" : 1,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -203,7 +200,6 @@
     "Green Component" : 0
   },
   "Use Cursor Guide" : false,
-  "Custom Window Title" : "bleh",
   "Unlimited Scrollback" : false,
   "Custom Command" : "Custom Shell",
   "AWDS Tab Option" : "Recycle",
@@ -389,14 +385,6 @@
   "Name" : "Default",
   "Blinking Cursor" : true,
   "Guid" : "8FDE4CF3-141C-4B77-84C3-2367CE5202F0",
-  "Idle Code" : 0,
-  "Ansi 10 Color" : {
-    "Red Component" : 0,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0,
-    "Alpha Component" : 1,
-    "Green Component" : 0.85098039219999999
-  },
   "Ansi 8 Color" : {
     "Red Component" : 0.40000000000000002,
     "Color Space" : "sRGB",
@@ -404,6 +392,14 @@
     "Alpha Component" : 1,
     "Green Component" : 0.40000000000000002
   },
+  "Ansi 10 Color" : {
+    "Red Component" : 0,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0,
+    "Alpha Component" : 1,
+    "Green Component" : 0.85098039219999999
+  },
+  "Idle Code" : 0,
   "Badge Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -423,7 +419,7 @@
   },
   "AWDS Pane Directory" : "",
   "Left Option Key Changeable" : false,
-  "Normal Font" : "HackNerdFontComplete-Regular 13",
+  "Normal Font" : "HackNF-Regular 13",
   "Application Keypad Allowed" : false,
   "Vertical Spacing" : 1,
   "Blur" : true,
@@ -438,7 +434,7 @@
   "Place Prompt at First Column" : true,
   "AWDS Tab Directory" : "",
   "AWDS Pane Option" : "Recycle",
-  "Command" : "\/usr\/bin\/env zsh",
+  "Command" : "zsh",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 0,
@@ -461,6 +457,7 @@
     "Green Component" : 0.65098039220000004
   },
   "Transparency" : 0.14999999999999999,
+  "Initial Text" : "",
   "Background Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -482,8 +479,8 @@
   "Columns" : 99,
   "Use Tab Color" : false,
   "Visual Bell" : true,
-  "ASCII Ligatures" : false,
   "Custom Directory" : "Advanced",
+  "ASCII Ligatures" : false,
   "Ansi 5 Color" : {
     "Red Component" : 0.69803921570000005,
     "Color Space" : "sRGB",
