@@ -126,13 +126,16 @@ bindkey "^U" backward-kill-line
 # Miscellaneous
 alias empty="/bin/rm -rf ~/.Trash/*"
 alias unlocktrash="/usr/bin/sudo /usr/sbin/chown -R ${USER}:${GROUP} ~/.Trash/*"
-# Note: requires Homebrew installed gls
+# Note: requires Homebrew installed lsd
 # Alias expansion causes issues with things like brew ls or git ls;
 # the only solution so far is to quote the ls e.g., git \ls or git "ls".
-# Might a function fix this?
-alias ls="${BREW_PREFIX}/bin/gls --classify --color=auto"
-alias l="${BREW_PREFIX}/bin/gls --classify --color=auto -l"
-alias ll="${BREW_PREFIX}/bin/gls --classify --color=auto -al"
+# Might a function fix this? (2023-05-18: no longer seems to be an issue?
+# -- unsure why)
+alias ls="${BREW_PREFIX}/bin/lsd --classify --color=auto --group-directories-first"
+alias l="${BREW_PREFIX}/bin/lsd --classify --color=auto -l --group-directories-first"
+alias lr="${BREW_PREFIX}/bin/lsd --classify --color=auto -l --group-directories-first --tree"
+alias ll="${BREW_PREFIX}/bin/lsd --classify --color=auto -al --group-directories-first"
+alias llr="${BREW_PREFIX}/bin/lsd --classify --color=auto -al --group-directories-first --tree"
 alias l@="/bin/ls -lFG@"
 alias ll@="/bin/ls -alFG@"
 alias man="/usr/local/bin/openman"
