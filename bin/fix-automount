@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Add configuration to auto-mount University SMB shares.
+# Run this if the shares are missing, especially after system updates.
+
+if grep -q auto_shares /etc/auto_master
+then
+	echo 'SMB automount already configured'
+else
+	echo 'Configuring SMB automount...'
+    echo '/System/Volumes/Data/mnt/shares    auto_shares    -nosuid,noowners' | sudo tee -a /etc/auto_master > /dev/null
+fi
+echo 'Reloading configuration...'
+sudo automount -vc
