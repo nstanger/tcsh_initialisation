@@ -71,3 +71,12 @@ colorscheme quietlight
 
 set mouse=a
 set nomodeline
+
+if exists("g:neovide")
+  " macOS key bindings
+  let g:neovide_input_use_logo=v:true
+  map <D-v> "+p<CR>
+  map! <D-v> <C-R>+
+  tmap <D-v> <C-R>+
+  vmap <D-c> "+y<CR>
+endif
