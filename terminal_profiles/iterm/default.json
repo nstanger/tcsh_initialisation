@@ -84,7 +84,7 @@
     "slogin",
     "telnet"
   ],
-  "Scrollback Lines" : 10000,
+  "Scrollback Lines" : 5000,
   "Draw Powerline Glyphs" : false,
   "Status Bar Layout" : {
     "components" : [
