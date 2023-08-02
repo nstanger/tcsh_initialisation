@@ -236,9 +236,9 @@ eval "$(starship init zsh)"
 
 #####################################################################
 # Lazy-load the Python virtualenv wrapper so that it doesn't slow down
-# shell initialisation. "workon" is an obvious hook as it's the most
-# likely thing to want to do first (could alias other function as well,
-# I guess, but this will do for now).
+# shell initialisation. "workon" ind "mkvirtualenv are obvious hooks as
+# they're the most likely thing to want to do first (could alias other
+# functions as well, I guess, but this will do for now).
 function workon() {
     # source virtualenvwrapper.sh && workon
     # workaround to hide "egrep: warning: egrep is obsolescent; using ggrep -E"
@@ -246,6 +246,12 @@ function workon() {
     source virtualenvwrapper.sh > /dev/null 2>&1 && workon $@
 }
 
+function mkvirtualenv() {
+    # source virtualenvwrapper.sh && workon
+    # workaround to hide "egrep: warning: egrep is obsolescent; using ggrep -E"
+    # (warning in GNU egrep wrapper at /usr/local/opt/grep/bin/gegrep)
+    source virtualenvwrapper.sh > /dev/null 2>&1 && mkvirtualenv $@
+}
 
 #####################################################################
 # Set up Perl to use "local::lib".
