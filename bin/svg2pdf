@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Quickly convert SVG to PDF.
+# WARNING: binaries are currently hard-coded. Need to hook this into some sort of more general configuration thing.
+#
+
+if [ $# -eq 0 ] ; then echo "Usage: sv2pdf <input file> [<output file>]" ; exit 1 ; fi
+
+INKSCAPE="${BREW_PREFIX}/bin/inkscape"
+
+inlocation=$(dirname "$1")
+inputfile=$(basename "$1")
+
+if [ "$inlocation" = "." ]
+then
+    inlocation=""
+else
+    inlocation="${inlocation}/"
+fi
+
+if [ -z "$2" ]
+then
+    outlocation="${inlocation}"
+    outputfile="${inputfile%.*}.pdf"
+else
+    outlocation=""
+    outputfile=$2
+fi
+
+$INKSCAPE --export-area-drawing --export-text-to-path --export-type=pdf --export-filename="${outlocation}${outputfile}" "${inlocation}${inputfile}"
