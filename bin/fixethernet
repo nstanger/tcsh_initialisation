@@ -1,0 +1,71 @@
+#!/usr/bin/env zsh
+
+# Reset the Ethernet network service when it wedges up. Switch to Wi-Fi
+# first to ensure that existing network connections are not disrupted too
+# much, especially local file shares.
+#
+# ASSUMPTION: Ethernet is service 1 and Wi-Fi is service 2. This could
+# probably be generalised but meh. This is already way too over-engineered.
+
+# Get list of network services.
+IFS=$'\n' read -r -d '' -A services < <(networksetup -listnetworkserviceorder | grep '^([0-9*])' | cut -d' ' -f2-)
+# For some reason it ends up with an empty element ('') at the end.
+services=(${services[@]:-1})
+
+if [ ${services[1]} != "Ethernet" ]; then
+    echo "error: Expected the first network service to be 'Ethernet' but found '${services[1]}'. Check the network service order in System Settings."
+    exit 22 # Invalid argument
+fi
+
+# Get list of network devices.
+IFS=$'\n' read -r -d '' -A devices < <(networksetup -listnetworkserviceorder | grep 'Device:' | awk '{print match($NF, /^)$/) ? "null" : $NF}' | tr -d ')')
+# We only actually need the Ethernet device.
+ethernet=${devices[1]}
+
+# Swap first two network services (Ethernet <-> Wi-Fi).
+# Use eval because networksetup seems quite stupid and complains about
+# the printf not having quotes around it.
+eval "networksetup -ordernetworkservices '${services[2]}' '${services[1]}' $(printf "'%s' " "${services[@]:2:${#services[@]}}")"
+
+# Reset Ethernet service.
+networksetup -setnetworkserviceenabled "Ethernet" off
+networksetup -setnetworkserviceenabled "Ethernet" on
+
+# Wait for Ethernet device to get an IP address before restoring the
+# original service order. Note grep for "inet " to avoid detecting
+# "inet6", as that seems to come up faster but doesn't help.
+echo -n "Waiting for Ethernet service to come up."
+until ifconfig $ethernet | grep "inet " > /dev/null
+do
+    sleep 1
+    echo -n '.'
+done
+echo "done"
+
+# Reset original network service order.
+eval "networksetup -ordernetworkservices $(printf "'%s' " "${services[@]}")"
+
+
+# Example of output from networksetup -listnetworkserviceorder order:
+#
+# An asterisk (*) denotes that a network service is disabled.
+# (1) Ethernet
+# (Hardware Port: Ethernet, Device: en0)
+# 
+# (2) Wi-Fi
+# (Hardware Port: Wi-Fi, Device: en1)
+# 
+# (3) USB 10/100/1000 LAN
+# (Hardware Port: USB 10/100/1000 LAN, Device: en6)
+# 
+# (4) USB 10/100/1000 LAN 2
+# (Hardware Port: USB 10/100/1000 LAN, Device: en8)
+# 
+# (5) Thunderbolt Bridge
+# (Hardware Port: Thunderbolt Bridge, Device: bridge0)
+# 
+# (6) eduVPN
+# (Hardware Port: org.eduvpn.app, Device: )
+# 
+# (*) Let’s Connect!
+# (Hardware Port: com.commonscaretakers.letsconnect.mac, Device: )
