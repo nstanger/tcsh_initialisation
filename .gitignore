@@ -1,17 +1,1 @@
-keyrings/live/pubring.gpg~
-keyrings/live/pubring.kbx~
-keyrings/live/secring.gpg
-git/.gitconfig
-gui/environment
-net/.forward
-net/.netrc
-tcsh/shared/environment.shared
-sitecopy/.sitecopyrc
-wget/.wgetrc
-automount/auto_shares
 !bin
-/vpn/otago.ac.nz.vpn
-/vpn/stanger.org.nz.ovpn
-/vpn/otago.ac.nz.auth
-/vpn/stanger.org.nz.auth
-/zsh/.zshenv

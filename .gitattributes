@@ -1,0 +1,13 @@
+automount/auto_shares filter=git-crypt diff=git-crypt
+git/.gitconfig filter=git-crypt diff=git-crypt
+gui/environment filter=git-crypt diff=git-crypt
+net/.forward filter=git-crypt diff=git-crypt
+net/.netrc filter=git-crypt diff=git-crypt
+sitecopy/.sitecopyrc filter=git-crypt diff=git-crypt
+tcsh/shared/environment.shared filter=git-crypt diff=git-crypt
+vpn/otago.ac.nz.auth filter=git-crypt diff=git-crypt
+vpn/otago.ac.nz.vpn filter=git-crypt diff=git-crypt
+vpn/stanger.org.nz.auth filter=git-crypt diff=git-crypt
+vpn/stanger.org.nz.ovpn filter=git-crypt diff=git-crypt
+wget/.wgetrc filter=git-crypt diff=git-crypt
+zsh/.zshenv filter=git-crypt diff=git-crypt
